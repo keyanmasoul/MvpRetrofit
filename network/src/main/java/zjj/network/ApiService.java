@@ -1,0 +1,30 @@
+package zjj.network;
+
+import android.graphics.Movie;
+
+import java.util.List;
+
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
+import rx.Observable;
+
+/**
+ * ${Filename}
+ * Created by zjj on 2017/2/13.
+ */
+
+public interface ApiService{
+
+    @GET("movie/top250")
+    Observable<BaseHttpResponse<List<Movie>>> getTopMovie(@Query("start") int start,
+                                                          @Query("count") int count);
+
+    @FormUrlEncoded
+    @POST("distance?")
+    Observable<BaseHttpResponse<List<String>>> getDistance(@Field("waypoints") String waypoints,
+                                                         @Field("ak") String ak,
+                                                         @Field("output") String output);
+}
