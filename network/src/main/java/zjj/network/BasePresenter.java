@@ -11,12 +11,12 @@ import zjj.network.interfaces.IMvpBaseView;
  * Created by zjj on 2017/2/13.
  */
 
-public abstract class BasePresenter<V extends IMvpBaseView, T> implements IBasePresenter<V> {
+public abstract class BasePresenter<V extends IMvpBaseView> implements IBasePresenter<V> {
 
     protected V mvpView;
     protected ApiService apiService;
 
-    private CompositeSubscription compositeSubscription;
+    protected CompositeSubscription compositeSubscription;
 
     public BasePresenter(V mvpView) {
         attachView(mvpView);
@@ -38,10 +38,10 @@ public abstract class BasePresenter<V extends IMvpBaseView, T> implements IBaseP
         if (showLoading) {
             mvpView.showLoadingDialog();
         }
-        return new HttpSubscriber<T>(tag) {
+        return new HttpSubscriber<String>(tag) {
             @Override
-            public void onSuccess(T t, int tag) {
-                BasePresenter.this.onSuccess(t, tag);
+            public void onSuccess(String o, int tag) {
+                BasePresenter.this.onSuccess(o, tag);
             }
 
             @Override
@@ -71,7 +71,7 @@ public abstract class BasePresenter<V extends IMvpBaseView, T> implements IBaseP
             compositeSubscription.unsubscribe();
     }
 
-    public abstract void onSuccess(T t, int tag);
+    public abstract void onSuccess(String result, int tag);
 
     public abstract void onError(String msg, int tag);
 }

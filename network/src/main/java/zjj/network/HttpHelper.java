@@ -99,14 +99,13 @@ public class HttpHelper {
     /**
      * Observable 转化
      *
-     * @param <T>
      * @return
      */
-    <T> Observable.Transformer<BaseHttpResponse<T>, T> applySchedulers() {
-        return new Observable.Transformer<BaseHttpResponse<T>, T>() {
+    private Observable.Transformer<BaseHttpResponse, String> applySchedulers() {
+        return new Observable.Transformer<BaseHttpResponse, String>() {
             @Override
-            public Observable<T> call(Observable<BaseHttpResponse<T>> baseHttpResultObservable) {
-                return baseHttpResultObservable.map(new HttpFunc<T>())
+            public Observable call(Observable<BaseHttpResponse> baseHttpResultObservable) {
+                return baseHttpResultObservable.map(new HttpFunc())
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread());
@@ -117,14 +116,13 @@ public class HttpHelper {
     /**
      * 用来统一处理Http请求到的数据,并将数据解析成对应的Model返回
      *
-     * @param <T> Subscriber真正需要的数据类型
      */
-    private class HttpFunc<T> implements Func1<BaseHttpResponse<T>, T> {
+    private class HttpFunc implements Func1<BaseHttpResponse, String> {
 
         @Override
-        public T call(BaseHttpResponse<T> baseHttpResult) {
+        public String call(BaseHttpResponse baseHttpResult) {
             //获取数据失败则抛出异常 会进入到subscriber的onError中
-            return baseHttpResult.getSubjects();
+            return baseHttpResult.getTitle();
         }
     }
 

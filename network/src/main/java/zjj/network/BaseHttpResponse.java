@@ -5,10 +5,9 @@ package zjj.network;
  * Created by zjj on 2017/2/13.
  */
 
-public class BaseHttpResponse<T> {
+public class BaseHttpResponse {
 
     private String title;
-    private T subjects;
 
     public String getTitle() {
         return title;
@@ -18,11 +17,4 @@ public class BaseHttpResponse<T> {
         this.title = title;
     }
 
-    public T getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(T subjects) {
-        this.subjects = subjects;
-    }
 }

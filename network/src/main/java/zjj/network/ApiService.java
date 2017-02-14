@@ -19,12 +19,12 @@ import rx.Observable;
 public interface ApiService{
 
     @GET("movie/top250")
-    Observable<BaseHttpResponse<List<Movie>>> getTopMovie(@Query("start") int start,
+    Observable<BaseHttpResponse> getTopMovie(@Query("start") int start,
                                                           @Query("count") int count);
 
     @FormUrlEncoded
     @POST("distance?")
-    Observable<BaseHttpResponse<List<String>>> getDistance(@Field("waypoints") String waypoints,
+    Observable<BaseHttpResponse> getDistance(@Field("waypoints") String waypoints,
                                                          @Field("ak") String ak,
                                                          @Field("output") String output);
 }

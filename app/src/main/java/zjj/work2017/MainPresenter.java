@@ -1,9 +1,6 @@
 package zjj.work2017;
 
-import android.graphics.Movie;
 import android.util.Log;
-
-import java.util.List;
 
 import zjj.network.BasePresenter;
 import zjj.network.interfaces.IMvpBaseView;
@@ -13,7 +10,7 @@ import zjj.network.interfaces.IMvpBaseView;
  * Created by zjj on 2017/2/13.
  */
 
-public class MainPresenter extends BasePresenter<MainPresenter.IMainView, List<Movie>> {
+public class MainPresenter extends BasePresenter<MainPresenter.IMainView> {
 
     private IMainView iMainView;
 
@@ -22,9 +19,17 @@ public class MainPresenter extends BasePresenter<MainPresenter.IMainView, List<M
         this.iMainView = iMainView;
     }
 
+    private static final int GET_TOP_MOVIE = 0;
+
     @Override
-    public void onSuccess(List<Movie> o, int tag) {
-        Log.d("result-----", "back");
+    public void onSuccess(String result, int tag) {
+        Log.d("result-----", result);
+        switch (tag) {
+            case GET_TOP_MOVIE:
+                //// TODO: 2017/2/14 string to jsonobject
+                break;
+            default:
+        }
         iMainView.doSuccess();
     }
 
@@ -36,7 +41,7 @@ public class MainPresenter extends BasePresenter<MainPresenter.IMainView, List<M
     public void getTopMovie() {
         sendHttpRequest(
                 apiService.getTopMovie(0, 10),
-                0);
+                GET_TOP_MOVIE);
     }
 
 
