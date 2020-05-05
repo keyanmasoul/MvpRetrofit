@@ -1,8 +1,10 @@
 package zjj.network;
 
-import rx.Observable;
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import zjj.network.interfaces.IBasePresenter;
 import zjj.network.interfaces.IMvpBaseView;
 
@@ -16,11 +18,11 @@ public abstract class BasePresenter<V extends IMvpBaseView> implements IBasePres
     protected V mvpView;
     protected ApiService apiService;
 
-    protected CompositeSubscription compositeSubscription;
+    protected CompositeDisposable compositeSubscription;
 
     public BasePresenter(V mvpView) {
         attachView(mvpView);
-        this.compositeSubscription = new CompositeSubscription();
+        this.compositeSubscription = new CompositeDisposable();
         this.apiService = HttpHelper.getInstance().getApiService();
     }
 
@@ -40,6 +42,11 @@ public abstract class BasePresenter<V extends IMvpBaseView> implements IBasePres
         }
         return new HttpSubscriber<String>(tag) {
             @Override
+            public void onSubscribe(Disposable d) {
+                compositeSubscription.add(d);
+            }
+
+            @Override
             public void onSuccess(String o, int tag) {
                 BasePresenter.this.onSuccess(o, tag);
             }
@@ -52,23 +59,21 @@ public abstract class BasePresenter<V extends IMvpBaseView> implements IBasePres
     }
 
     public void sendHttpRequest(Observable observable, int tag) {
-        compositeSubscription.add(HttpHelper.getInstance().sendHttpRequest(observable, getSubscriber(
-                tag, false)
-        ));
+        HttpHelper.getInstance().sendHttpRequest(observable, getSubscriber(tag, false));
     }
 
     @Override
-    public void subscribe(Subscription subscription) {
+    public void subscribe(Disposable disposable) {
         if (compositeSubscription == null) {
-            compositeSubscription = new CompositeSubscription();
+            compositeSubscription = new CompositeDisposable();
         }
-        compositeSubscription.add(subscription);
+        compositeSubscription.add(disposable);
     }
 
     @Override
     public void unSubscribe() {
-        if (compositeSubscription != null && compositeSubscription.hasSubscriptions())
-            compositeSubscription.unsubscribe();
+        if (compositeSubscription != null && !compositeSubscription.isDisposed())
+            compositeSubscription.dispose();
     }
 
     public abstract void onSuccess(String result, int tag);

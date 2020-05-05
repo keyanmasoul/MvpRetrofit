@@ -1,6 +1,7 @@
 package zjj.network.interfaces;
 
-import rx.Subscription;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * ${Filename}
@@ -9,7 +10,7 @@ import rx.Subscription;
 
 public interface IBasePresenter<V extends IMvpBaseView> {
 
-    void subscribe(Subscription subscription);
+    void subscribe(Disposable disposable);
 
     void unSubscribe();
 

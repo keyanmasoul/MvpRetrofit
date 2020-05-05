@@ -1,17 +1,26 @@
 package zjj.network;
 
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Flowable;
+import io.reactivex.FlowableTransformer;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * ${Filename}
@@ -35,7 +44,6 @@ public class HttpHelper {
         return INSTANCE;
     }
 
-    private Retrofit retrofit;
     private HashMap<String, String> header;
 
     private boolean DEBUG = false;
@@ -77,53 +85,24 @@ public class HttpHelper {
         OkHttpClient.Builder httpBuilder = new OkHttpClient().newBuilder();
         httpBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         httpBuilder.addInterceptor(new RequestInterceptor());
-        retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .client(httpBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(baseUrl)
                 .build();
         apiService = retrofit.create(ApiService.class);
     }
 
-    public Observable packageObservable(Observable observable) {
+    public <T> Observable apiSubscribe(Observable<T>  observable) {
         return observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+
     }
 
-    public <T> Subscription sendHttpRequest(Observable observable, HttpSubscriber<T> listener) {
-        return observable.compose(this.<T>applySchedulers()).subscribe(listener);
-    }
-
-    /**
-     * Observable 转化
-     *
-     * @return
-     */
-    private Observable.Transformer<BaseHttpResponse, String> applySchedulers() {
-        return new Observable.Transformer<BaseHttpResponse, String>() {
-            @Override
-            public Observable call(Observable<BaseHttpResponse> baseHttpResultObservable) {
-                return baseHttpResultObservable.map(new HttpFunc())
-                        .subscribeOn(Schedulers.io())
-                        .unsubscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
-            }
-        };
-    }
-
-    /**
-     * 用来统一处理Http请求到的数据,并将数据解析成对应的Model返回
-     *
-     */
-    private class HttpFunc implements Func1<BaseHttpResponse, String> {
-
-        @Override
-        public String call(BaseHttpResponse baseHttpResult) {
-            //获取数据失败则抛出异常 会进入到subscriber的onError中
-            return baseHttpResult.getTitle();
-        }
+    public void sendHttpRequest(Observable observable, HttpSubscriber listener) {
+        apiSubscribe(observable).subscribe(listener);
     }
 
 

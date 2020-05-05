@@ -1,11 +1,11 @@
 package zjj.network;
 
+import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
-import rx.Observable;
 
 /**
  * ${Filename}
@@ -16,7 +16,7 @@ public interface ApiService{
 
     @GET("movie/top250")
     Observable<BaseHttpResponse> getTopMovie(@Query("start") int start,
-                                                          @Query("count") int count);
+                                             @Query("count") int count);
 
     @FormUrlEncoded
     @POST("distance?")

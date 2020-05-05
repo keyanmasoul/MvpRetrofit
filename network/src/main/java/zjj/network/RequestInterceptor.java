@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.Objects;
 
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
@@ -31,7 +33,7 @@ public class RequestInterceptor implements Interceptor {
         HashMap<String, String> header = HttpHelper.getInstance().getHeader();
         if (header != null) {
             for (String key : header.keySet()) {
-                originalRequestBuilder.addHeader(key, header.get(key));
+                originalRequestBuilder.addHeader(key, Objects.requireNonNull(header.get(key)));
             }
         }
         Request request = originalRequestBuilder.build();
@@ -58,7 +60,7 @@ public class RequestInterceptor implements Interceptor {
             return;
         }
         FormBody.Builder formBuilder = new FormBody.Builder();
-        String msg = originalRequest.url() + "\n";
+        StringBuilder msg = new StringBuilder(originalRequest.url() + "\n");
         RequestBody oidBody = originalRequest.body();
         if (oidBody instanceof FormBody) {
             FormBody formBody = (FormBody) oidBody;
@@ -67,11 +69,11 @@ public class RequestInterceptor implements Interceptor {
                 String value = URLDecoder.decode(formBody.encodedValue(i), "utf-8");
                 if (!TextUtils.isEmpty(value)) {
                     formBuilder.add(name, value);
-                    msg += name + "  =  " + value + "\n";
+                    msg.append(name).append("  =  ").append(value).append("\n");
                 }
             }
         }
-        Log.d("network-request", msg);
+        Log.d("network-request", msg.toString());
     }
 
     /**
@@ -87,7 +89,7 @@ public class RequestInterceptor implements Interceptor {
         BufferedSource source = responseBody.source();
         source.request(Long.MAX_VALUE); // Buffer the entire body.
         Buffer buffer = source.buffer();
-        Charset UTF8 = Charset.forName("UTF-8");
+        Charset UTF8 = StandardCharsets.UTF_8;
         MediaType contentType = responseBody.contentType();
         if (contentType != null) {
             UTF8 = contentType.charset(UTF8);

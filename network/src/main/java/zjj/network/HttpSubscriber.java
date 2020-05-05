@@ -2,14 +2,16 @@ package zjj.network;
 
 import android.util.Log;
 
-import rx.Subscriber;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+
 
 /**
  * ${Filename}
  * Created by zjj on 2017/2/13.
  */
 
-public abstract class HttpSubscriber<T> extends Subscriber<T> {
+public abstract class HttpSubscriber<T> implements Observer<T> {
     private int tag;
 
     public HttpSubscriber(int tag) {
@@ -17,7 +19,11 @@ public abstract class HttpSubscriber<T> extends Subscriber<T> {
     }
 
     @Override
-    public void onCompleted() {
+    public void onSubscribe(Disposable d) {
+    }
+
+    @Override
+    public void onComplete() {
         if (HttpHelper.getInstance().isDebug()) {
             Log.d("HttpSubscriber", "onCompleted");
         }
