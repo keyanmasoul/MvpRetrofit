@@ -3,10 +3,15 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:3.6.1'
 
+        classpath 'com.google.gms:google-services:4.2.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -14,10 +19,132 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         jcenter()
+        maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
+        maven { url "http://kochava.bintray.com/maven" }
+        maven { url "https://jitpack.io" }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+
+ext {
+    android = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "28.0.3",
+            minSdkVersion    : 21,
+            targetSdkVersion : 28,
+
+            versionCode      : 1021500,
+            versionName      : "1.02.15.00",
+    ]
+
+    versions = [
+            mob    : '3.3.8-alpha-02',
+            swipe  : '2.3.1',
+            weather  : '1.2.1'
+    ]
+
+    dependencies = [
+            "support-v4"              : 'com.android.support:support-v4:28.0.2',
+            "appcompat-v7"            : 'androidx.appcompat:appcompat:1.1.0',
+            "gridlayout"              : 'com.android.support:gridlayout-v7:28.0.2',
+            "recyclerview-v7"         : 'androidx.recyclerview:recyclerview:1.0.0',
+            "design"                  : 'com.google.android.material:material:1.1.0',
+            "cardview-v7"             : 'androidx.cardview:cardview:1.0.0',
+            "customtabs"              : 'com.android.support:customtabs:28.0.2',
+            "constraintlayout"        : 'androidx.constraintlayout:constraintlayout:1.1.3',
+
+            "butterknife"             : 'com.jakewharton:butterknife:7.0.1',
+            "nineoldandroids"         : 'com.nineoldandroids:library:2.4.0',
+            "materialprogressbar"     : 'me.zhanghai.android.materialprogressbar:library:1.1.6',
+            "stepper"              : 'com.github.badoualy:stepper-indicator:1.0.7',
+
+            "RecyclerViewHelper"   : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50',
+            "multisnaprecyclerview": 'com.github.takusemba:multisnaprecyclerview:2.0.2',
+            "play-services-base"      : 'com.google.android.gms:play-services-basement:16.1.0',
+            "play-services-auth"      : 'com.google.android.gms:play-services-auth:16.0.1',
+            "play-services-gcm"       : 'com.google.android.gms:play-services-gcm:16.1.0',
+            "play-services-ads"       : 'com.google.android.gms:play-services-ads:17.2.0',
+            "identifier"              : 'com.google.android.gms:play-services-ads-identifier:15.0.1',
+            "firebase_core"           : 'com.google.firebase:firebase-core:16.0.8',
+            "firebase_messaging"      : 'com.google.firebase:firebase-messaging:20.0.0',
+            "play-services-location"  : 'com.google.android.gms:play-services-location:16.0.0',
+            "firebase_auth"           : 'com.google.firebase:firebase-auth:10.2.6',
+
+            "custom-material-design"  : 'com.github.navasmdc:MaterialDesign:1.5@aar',
+            "facebook-sdk"            : 'com.facebook.android:facebook-android-sdk:4.27.0',
+
+            "js-evaluator-for-android": 'com.github.evgenyneu:js-evaluator-for-android:v2.0.0',
+            "jiaozivideoplayer"       : 'cn.jzvd:jiaozivideoplayer:6.2.12',
+            "multidex"                : 'androidx.multidex:multidex:2.0.0',
+            "lottie"                  : 'com.airbnb.android:lottie:3.3.1',
+            "twitter-core"            : 'com.twitter.sdk.android:twitter-core:1.6.6@aar',
+            "twitter"                 : 'com.twitter.sdk.android:twitter:1.13.1@aar',
+            "flurry"                  : 'com.flurry.android:analytics:7.0.0@aar',
+
+            "exoplayer"               : 'com.google.android.exoplayer:exoplayer-core:2.8.2',
+
+            "installreferrer"         : 'com.android.installreferrer:installreferrer:1.0',
+
+            "hello-daemon"            : 'com.xdandroid:hellodaemon:+',
+
+            "greendao"                : 'de.greenrobot:greendao:2.0.0',
+
+            "gson"                    : 'com.google.code.gson:gson:2.8.5',
+
+            //ad support
+            "MediationTest"           : 'com.google.android.ads:mediation-test-suite:0.9.0',
+
+            //facebook
+            "facebook-ad-sdk"         : 'com.facebook.android:audience-network-sdk:5.6.0',
+            "facebookMediation"       : 'com.google.ads.mediation:facebook:5.3.0.0',
+
+            //appnext
+            "appnext-sdk-ads"         : 'com.appnext.sdk:ads:2.4.2.47',
+            "appnext-sdk-banners"     : 'com.appnext.sdk:banners:2.4.2.47',
+            "appnext-sdk-native"      : 'com.appnext.sdk:native-ads2:2.+',
+            "appnext-sdk-actions"     : 'com.appnext.sdk:actions:2.+',
+            "appnext-adapter-ads"     : 'com.appnext.sdk.adapters:admob-ads:2.4.2.472',
+            "appnext-adapter-banners" : 'com.appnext.sdk.adapters:admob-banners:2.4.2.472',
+
+            //mopub
+            "mopub-volley"            : "com.mopub.volley:mopub-volley:2.1.0",
+            "mopup-sdk"               : "com.mopub:mopub-sdk:5.3.0@aar",
+            "mopup-mediation"         : "com.google.ads.mediation:mopub:5.3.0.1",
+
+            //gp billing
+            "google-play_billing"     : "com.android.billingclient:billing:2.0.1",
+
+            "adsbusiness"             : "com.arcastudio.support:adsbusiness:2.9.6@aar",
+            "adsui"                   : "com.arcastudio.support:adsui:2.9.6@aar",
+            "adtools"                 : "com.arcastudio.support:adtools:2.9.6@aar",
+            "advsdk"                  : "com.arcastudio.support:advsdk:2.9.6@aar",
+            "base"                    : "com.arcastudio.support:base:2.9.6@aar",
+            "logger"                  : "com.arcastudio.support:logger:2.9.6@aar",
+            "permission"              : "com.arcastudio.support:permission:2.9.6@aar",
+            "uilite"                  : "com.arcastudio.support:uilite:2.9.6@aar",
+            "swipe"                   : "com.arcastudio.support:swipe:2.9.6@aar",
+            "weather"                 : "com.arcastudio.support:weather:2.9.6@aar",
+
+            "appsflyer"               : 'com.appsflyer:af-android-sdk:4.9.0',
+
+            "glide-transformations": 'jp.wasabeef:glide-transformations:4.1.0',
+            "glide"                : 'com.github.bumptech.glide:glide:4.9.0',
+            "glide-okhttp3"        : 'com.github.bumptech.glide:okhttp3-integration:4.9.0',
+            "glide-compiler"       : 'com.github.bumptech.glide:compiler:4.9.0',
+            "androidx-annotation"  : 'androidx.annotation:annotation:1.1.0',
+
+            "okhttp"               : 'com.squareup.okhttp3:okhttp:3.9.1',
+            "okio"                 : 'com.squareup.okio:okio:1.13.0',
+            "apache-collections4"  : 'org.apache.commons:commons-collections4:4.1',
+    ]
 }
