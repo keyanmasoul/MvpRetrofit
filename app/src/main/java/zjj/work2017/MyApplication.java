@@ -18,7 +18,7 @@ public class MyApplication extends Application {
     }
 
     private void initNetWork() {
-        HttpHelper.HelperParam param = new HttpHelper.HelperParam("https://api.douban.com/v2/");
+        HttpHelper.HelperParam param = new HttpHelper.HelperParam("http://gt.supercall.xyz");
         HttpHelper.getInstance().setDebug(true);
         HttpHelper.getInstance().init(param);
     }
