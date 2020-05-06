@@ -2,7 +2,7 @@ package zjj.work2017;
 
 import android.app.Application;
 
-import zjj.network.HttpHelper;
+import corall.base.HttpHelper;
 
 /**
  * ${Filename}

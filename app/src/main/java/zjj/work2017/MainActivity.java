@@ -2,9 +2,7 @@ package zjj.work2017;
 
 import android.os.Bundle;
 
-import zjj.network.ApiService;
-import zjj.network.BasePresenter;
-import zjj.network.HttpHelper;
+import corall.base.BasePresenter;
 import zjj.work2017.common.BaseActivity;
 
 public class MainActivity extends BaseActivity implements MainPresenter.IMainView{

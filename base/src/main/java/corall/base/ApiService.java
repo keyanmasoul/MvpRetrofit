@@ -1,4 +1,4 @@
-package zjj.network;
+package corall.base;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

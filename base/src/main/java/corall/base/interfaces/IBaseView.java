@@ -1,11 +1,11 @@
-package zjj.network.interfaces;
+package corall.base.interfaces;
 
 /**
  * ${Filename}
  * Created by zjj on 2017/2/13.
  */
 
-public interface IMvpBaseView {
+public interface IBaseView {
 
     void showLoadingDialog();
 

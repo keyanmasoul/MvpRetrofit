@@ -1,4 +1,4 @@
-package zjj.network.interfaces;
+package corall.base.interfaces;
 
 
 import io.reactivex.disposables.Disposable;
@@ -8,7 +8,7 @@ import io.reactivex.disposables.Disposable;
  * Created by zjj on 2017/2/13.
  */
 
-public interface IBasePresenter<V extends IMvpBaseView> {
+public interface IBasePresenter<V extends IBaseView> {
 
     void subscribe(Disposable disposable);
 

@@ -2,8 +2,8 @@ package zjj.work2017;
 
 import android.util.Log;
 
-import zjj.network.BasePresenter;
-import zjj.network.interfaces.IMvpBaseView;
+import corall.base.BasePresenter;
+import corall.base.interfaces.IBaseView;
 
 /**
  * ${Filename}
@@ -40,12 +40,12 @@ public class MainPresenter extends BasePresenter<MainPresenter.IMainView> {
 
     public void getTopMovie() {
         sendHttpRequest(
-                apiService.getTopMovie(0, 10),
+                apiService.getAdConfig(),
                 GET_TOP_MOVIE);
     }
 
 
-    public interface IMainView extends IMvpBaseView {
+    public interface IMainView extends IBaseView {
         void doSuccess();
     }
 }

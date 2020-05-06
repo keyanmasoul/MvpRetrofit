@@ -1,19 +1,18 @@
-package zjj.network;
+package corall.base;
 
-import io.reactivex.Flowable;
+import corall.base.interfaces.IBaseView;
 import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import zjj.network.interfaces.IBasePresenter;
-import zjj.network.interfaces.IMvpBaseView;
+
+import corall.base.interfaces.IBasePresenter;
 
 /**
  * ${Filename}
  * Created by zjj on 2017/2/13.
  */
 
-public abstract class BasePresenter<V extends IMvpBaseView> implements IBasePresenter<V> {
+public abstract class BasePresenter<V extends IBaseView> implements IBasePresenter<V> {
 
     protected V mvpView;
     protected ApiService apiService;

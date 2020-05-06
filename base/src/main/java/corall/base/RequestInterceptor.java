@@ -1,4 +1,4 @@
-package zjj.network;
+package corall.base;
 
 import android.text.TextUtils;
 import android.util.Log;
