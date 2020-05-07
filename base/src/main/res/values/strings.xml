@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">network</string>
+    <string name="click_exit_tip">Press Return again to exit</string>
+
+    <string name="overlay_request_tip">Please allow us to draw over other apps in order to provide you  with all functions.</string>
+    <string name="overlay_tip">Need the floating window permission to display caller theme normally</string>
 </resources>

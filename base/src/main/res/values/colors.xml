@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="base_primary_color">#03A9F4</color>
+    <color name="base_primary_color_dark">#424242</color>
+    <color name="base_primary_color_light">#dd2c00</color>
+    <color name="base_bg_color">#222531</color>
+
+    <color name="base_trans">#00000000</color>
+
+    <color name="trans">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="white">#fff</color>
+    <color name="text_gray">#999999</color>
+    <color name="text_normal">#666666</color>
+    <color name="text_black">#333333</color>
+    <color name="text_pro">#CCB17A</color>
+
+    <color name="bg_trans_white">#ffffffff</color>
+    <color name="bg_trans_80_white">#CCffffff</color>
+    <color name="bg_trans_60_white">#99ffffff</color>
+    <color name="bg_trans_50_white">#80ffffff</color>
+    <color name="bg_trans_20_white">#33ffffff</color>
+    <color name="bg_trans_00_white">#00ffffff</color>
+
+    <color name="bg_trans_gray">#ff666666</color>
+    <color name="bg_trans_80_gray">#CC666666</color>
+    <color name="bg_trans_60_gray">#99666666</color>
+    <color name="bg_trans_50_gray">#80666666</color>
+    <color name="bg_trans_20_gray">#33666666</color>
+    <color name="bg_trans_00_gray">#00666666</color>
+
+    <color name="bg_trans_black">#ff666666</color>
+    <color name="bg_trans_80_black">#CC000000</color>
+    <color name="bg_trans_60_black">#99000000</color>
+    <color name="bg_trans_50_black">#80000000</color>
+    <color name="bg_trans_20_black">#33000000</color>
+    <color name="bg_trans_00_black">#00000000</color>
+
+    <color name="dialogplus_card_shadow">#D4D4D4</color>
+    <color name="dialogplus_black_overlay">#60000000</color>
+</resources>

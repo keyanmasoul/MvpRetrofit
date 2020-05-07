@@ -1,11 +1,13 @@
 package zjj.work2017;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
-import corall.base.BasePresenter;
-import zjj.work2017.common.BaseActivity;
+import corall.base.BaseActivity;
+import corall.base.bean.MessageEvent;
 
-public class MainActivity extends BaseActivity implements MainPresenter.IMainView{
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,9 +16,10 @@ public class MainActivity extends BaseActivity implements MainPresenter.IMainVie
     }
 
     @Override
-    protected BasePresenter createPresenter() {
-        return new MainPresenter(this);
+    protected void checkContext() {
+
     }
+
 
     @Override
     protected int setLayout() {
@@ -24,22 +27,23 @@ public class MainActivity extends BaseActivity implements MainPresenter.IMainVie
     }
 
     @Override
-    protected void initUIAndData() {
-        ((MainPresenter)mPresenter).getTopMovie();
+    protected void initViewAndData() {
+        findViewById(R.id.btn_test1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendEmptyMessageDelay(2, 2000);
+            }
+        });
     }
 
     @Override
-    public void doSuccess() {
-
+    protected void subHandleMessage(MessageEvent messageEvent) {
+        switch (messageEvent.getWhat()) {
+            case 2:
+                TextView textView = findViewById(R.id.tv_text);
+                textView.setText("post event success!");
+                break;
+        }
     }
 
-    @Override
-    public void showLoadingDialog() {
-
-    }
-
-    @Override
-    public void dismissLoadingDialog() {
-
-    }
 }

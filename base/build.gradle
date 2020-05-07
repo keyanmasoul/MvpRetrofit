@@ -19,6 +19,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -29,10 +35,18 @@ dependencies {
     api rootProject.ext.dependencies["appcompat-v7"]
     api rootProject.ext.dependencies["recyclerview-v7"]
 
+    api rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["glide-okhttp3"]
+
     api "io.reactivex.rxjava2:rxjava:2.2.19"
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     api 'com.squareup.retrofit2:retrofit:2.8.1'
     api 'com.squareup.retrofit2:converter-gson:2.8.1'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
     api 'org.greenrobot:eventbus:3.2.0'
+
+    api 'org.apache.commons:commons-text:1.6'
+    api 'com.blankj:utilcode:1.23.0'
+
+    implementation 'org.greenrobot:eventbus:3.2.0'
 }
