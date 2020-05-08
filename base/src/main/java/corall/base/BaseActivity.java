@@ -22,6 +22,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
+import com.liulishuo.okdownload.OkDownload;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -206,6 +207,7 @@ abstract public class BaseActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        OkDownload.with().downloadDispatcher().cancelAll();
         //开发者模式下可以关闭云配
 //        AdvSDK.getInstance().updateAdConfig();
     }
