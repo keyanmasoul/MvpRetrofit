@@ -36,6 +36,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import corall.base.bean.DownloadEvent;
 import corall.base.bean.MessageEvent;
 import corall.base.dialog.DialogPlus;
 import corall.base.dialog.OverlayDialog;
@@ -279,7 +280,15 @@ abstract public class BaseActivity extends AppCompatActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleMessage(MessageEvent messageEvent) {
-        subHandleMessage(messageEvent);
+        if (messageEvent instanceof DownloadEvent) {
+            subHandleDownloadMessage((DownloadEvent) messageEvent);
+        } else {
+            subHandleMessage(messageEvent);
+        }
+    }
+
+    protected void subHandleDownloadMessage(DownloadEvent downloadEvent) {
+
     }
 
     abstract protected void subHandleMessage(MessageEvent messageEvent);

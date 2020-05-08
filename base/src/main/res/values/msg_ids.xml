@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="msg_base_delay"
+        type="id" />
+    <item name="msg_check_caller_listener"
+        type="id" />
+
+    <item name="msg_app_list_error"
+        type="id" />
+    <item name="msg_download_event"
+        type="id" />
+</resources>

@@ -14,15 +14,19 @@ import com.liulishuo.okdownload.core.cause.EndCause;
 import com.liulishuo.okdownload.core.listener.DownloadListener4WithSpeed;
 import com.liulishuo.okdownload.core.listener.assist.Listener4SpeedAssistExtend;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import corall.base.bean.DownloadEvent;
+
 public class DownloadUtil {
 
-    public static void start(String url, long id) {
-        DownloadTask task = new DownloadTask.Builder(url, "", id + "")
-                .setMinIntervalMillisCallbackProcess(100)
+    public static void start(Context context, String url, long id) {
+        DownloadTask task = new DownloadTask.Builder(url, downloadParentPath(context), String.valueOf(id))
+                .setMinIntervalMillisCallbackProcess(300)
                 .setPassIfAlreadyCompleted(false)
                 .setPriority(10)
                 .setAutoCallbackToUIThread(true)
@@ -40,7 +44,10 @@ public class DownloadUtil {
 
             @Override
             public void progress(@NonNull DownloadTask task, long currentOffset, @NonNull SpeedCalculator taskSpeed) {
-
+                DownloadEvent downloadEvent = new DownloadEvent();
+                downloadEvent.setCurrentOffset(currentOffset);
+                downloadEvent.setSpeedCalculator(taskSpeed);
+                EventBus.getDefault().post(downloadEvent);
             }
 
             @Override
