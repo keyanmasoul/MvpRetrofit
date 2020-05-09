@@ -177,6 +177,9 @@ public class StringUtil {
     }
 
     public static String decodeStringRes(Context ctx, int res, Object... formatArgs) {
+        if (ctx == null) {
+            return "";
+        }
         String rawData = decodeRawStringRes(ctx, res, STRING_PASSWORD);
         try {
             return String.format(rawData, formatArgs);

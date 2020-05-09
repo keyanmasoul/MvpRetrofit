@@ -1,0 +1,55 @@
+<resources>
+
+
+    <string name="web_in_web_url">web_url</string>
+    <string name="web_in_place_id">place_id</string>
+
+    <string name="am_banner_type_default">MEDIUM_RECTANGLE</string>
+    <string name="fb_banner_type_default">RECTANGLE_HEIGHT_250</string>
+
+    <string name="am_banner_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="mp_banner_test">252412d5e9364a05ab77d9396346d73d</string>
+    <string name="fb_banner_test">IMG_16_9_APP_INSTALL</string>
+    <string name="am_reward_test">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="mp_in_test">24534e1901884e398f1253216226017e</string>
+    <string name="am_in_test">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="mp_reward_test">920b6145fb1546cf8b5cf2ac34638bb7</string>
+    <string name="fb_in_test">VID_HD_16_9_15S_APP_INSTALL</string>
+    <string name="fb_native_test">VID_HD_16_9_15S_APP_INSTALL</string>
+    <string name="am_native_adv_test">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="mp_native_test">11a17b188668469fb0412708c3d16813</string>
+
+    <string name="arc_mob_encoding">Accept-Encoding</string>
+    <string name="arc_mob_model">model</string>
+    <string name="arc_mob_nt">nettype</string>
+    <string name="arc_mob_nc">netcode</string>
+    <string name="arc_mob_cvn">clientvname</string>
+    <string name="arc_mob_cvc">clientvcode</string>
+    <string name="arc_mob_gz">gzip</string>
+    <string name="arc_mob_rs">resolution</string>
+    <string name="arc_mob_dt">density</string>
+    <string name="arc_mob_c_sv">sv</string>
+    <string name="arc_mob_c_osv">osv</string>
+    <string name="arc_mob_c_dm">dm</string>
+    <string name="arc_mob_c_rslt">rslt</string>
+    <string name="arc_mob_c_adid">adid</string>
+    <string name="arc_mob_c_devid">devid</string>
+    <string name="arc_mob_c_vc">vc</string>
+    <string name="arc_mob_c_br">brand</string>
+    <string name="arc_mob_c_pid">pid</string>
+    <string name="arc_mob_c_lan">lan</string>
+    <string name="arc_mob_c_uid">uid</string>
+    <string name="arc_mob_c_ch">ch</string>
+    <string name="arc_mob_c_chsub">chsub</string>
+    <string name="arc_mob_c_nt">nt</string>
+    <string name="arc_mob_c_ts">ts</string>
+    <string name="arc_mob_c_tz">tz</string>
+    <string name="arc_mob_c_mt">mt</string>
+    <string name="arc_mob_c_sign">sign</string>
+    <string name="arc_mob_json_keys">result22hmads22blockable22placeid22type22ads22adgroup22extra22switch_info22protime_info22limit_info22req_limit_info22interval_info22gray22timecount22frozen22is_store22storeId22block22chance22actions22nationlist22bgplace22native22banner22interstitial22reward22id22size22platform22url22title22icon22image22call_action22desc22pkg22action22union22jumpout22</string>
+    <string name="ads_config_pref">cr_ads_pref</string>
+    <string name="ads_pref_ff">_pf_m</string>
+    <string name="adv_firstrun_key">av_ift</string>
+    <string name="adv_config_key">ccmb_ad</string>
+    <string name="adv_ad_gray_key">asm_gray</string>
+</resources>

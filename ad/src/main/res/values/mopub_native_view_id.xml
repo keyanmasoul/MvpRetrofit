@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="adv_sdk_install_image" type="id" />
+    <item name="adv_sdk_install_icon" type="id" />
+    <item name="adv_sdk_title" type="id" />
+    <item name="adv_sdk_desc" type="id" />
+    <item name="adv_sdk_corner_img" type="id" />
+    <item name="adv_sdk_install_dl" type="id" />
+    <item name="adv_sdk_media_layout" type="id" />
+
+    <!-- for facebook -->
+    <item name="adv_fb_media_id" type="id" />
+    <item name="adv_fb_adchoice_id" type="id" />
+    <item name="adv_fb_social_text" type="id"/>
+</resources>

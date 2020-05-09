@@ -10,8 +10,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
@@ -29,9 +27,6 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     api rootProject.ext.dependencies["appcompat-v7"]
     api rootProject.ext.dependencies["recyclerview-v7"]
 
@@ -49,4 +44,5 @@ dependencies {
     api 'com.blankj:utilcode:1.23.0'
 
     implementation 'org.greenrobot:eventbus:3.2.0'
+    api "com.orhanobut:hawk:2.0.1"
 }
