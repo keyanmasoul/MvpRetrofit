@@ -1,11 +1,14 @@
 package zjj.work2017;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import corall.base.BaseActivity;
+import corall.base.bean.DownloadEvent;
 import corall.base.bean.MessageEvent;
+import corall.base.util.DownloadUtil;
 
 public class MainActivity extends BaseActivity {
 
@@ -34,6 +37,17 @@ public class MainActivity extends BaseActivity {
                 sendEmptyMessageDelay(2, 2000);
             }
         });
+
+        findViewById(R.id.btn_test2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                downloadTest();
+            }
+        });
+    }
+
+    private void downloadTest() {
+        DownloadUtil.start(getBaseContext(),"http://media.supercall.xyz/media/10002.mp4",10002);
     }
 
     @Override
@@ -44,6 +58,11 @@ public class MainActivity extends BaseActivity {
                 textView.setText("post event success!");
                 break;
         }
+    }
+
+    @Override
+    public void subHandleDownloadMessage(DownloadEvent event) {
+        Log.e("progress==", event.getCurrentOffset() + "");
     }
 
 }
