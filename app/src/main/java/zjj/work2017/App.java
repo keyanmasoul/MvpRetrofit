@@ -2,19 +2,19 @@ package zjj.work2017;
 
 import java.util.ArrayList;
 
-import corall.base.app.AMobManager;
+import corall.base.app.CorManager;
 import corall.base.app.CorApplication;
-import corall.base.app.MobBeanManager;
+import corall.base.app.CorBeanManager;
 import corall.base.app.ModuleConfig;
 
 public class App extends CorApplication {
     @Override
-    protected MobBeanManager createBeanManager() {
+    protected CorBeanManager createBeanManager() {
         return null;
     }
 
     @Override
-    public AMobManager getMobManager() {
+    public CorManager getMobManager() {
         return null;
     }
 

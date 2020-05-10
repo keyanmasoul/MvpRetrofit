@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * <p/>
  * Created by linlin_91 on 2016/02/26.
  */
-public abstract class ABeanManager {
+public abstract class CBeanManager {
 
     /**
      * 存放单例对象
@@ -17,7 +17,7 @@ public abstract class ABeanManager {
 
     protected CorApplication imContext;
 
-    public ABeanManager(CorApplication imContext) {
+    public CBeanManager(CorApplication imContext) {
         this.imContext = imContext;
 
     }

@@ -17,6 +17,6 @@ public interface OnClickListener {
      *
      * @param view is the clicked view
      */
-    void onClick(@NonNull DialogPlus dialog, @NonNull View view);
+    void onClick(@NonNull CorDialog dialog, @NonNull View view);
 
 }

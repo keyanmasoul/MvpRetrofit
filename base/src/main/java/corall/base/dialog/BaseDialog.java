@@ -11,21 +11,21 @@ import cor.base.R;
 
 abstract public class BaseDialog {
 
-    private DialogPlus dialogPlus;
+    private CorDialog dialogPlus;
     private DialogPlusBuilder builder;
     protected View root;
     protected Activity activity;
 
     public BaseDialog(Activity activity, int layoutId) {
         this.activity = activity;
-        builder = DialogPlus.newDialog(activity)
+        builder = CorDialog.newDialog(activity)
                 .setCancelable(setCancelAble())
                 .setContentHolder(new ViewHolder(layoutId))
                 .setGravity(Gravity.CENTER)
                 .setContentBackgroundResource(R.color.base_trans);
     }
 
-    public DialogPlus getDialogPlus() {
+    public CorDialog getDialogPlus() {
         return dialogPlus;
     }
 
@@ -37,7 +37,7 @@ abstract public class BaseDialog {
         this.builder = builder;
     }
 
-    public DialogPlus create() {
+    public CorDialog create() {
         dialogPlus = this.builder.create();
         root = dialogPlus.getHolderView();
         initView();

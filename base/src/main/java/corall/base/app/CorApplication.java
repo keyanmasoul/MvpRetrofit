@@ -28,7 +28,7 @@ import io.reactivex.disposables.Disposable;
  * 全局应用环境抽象类
  * <p/>
  */
-public abstract class CorApplication<B extends MobBeanManager, D extends AMobManager> extends Application {
+public abstract class CorApplication<B extends CorBeanManager, D extends CorManager> extends Application {
 
     public static final String TAG = CorApplication.class.getSimpleName();
 

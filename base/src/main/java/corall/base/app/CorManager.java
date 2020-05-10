@@ -9,9 +9,9 @@ import android.content.pm.PackageManager;
  *
  * Created by linlin_91 on 2015/6/23.
  */
-public abstract class AMobManager<A extends CorApplication> {
+public abstract class CorManager<A extends CorApplication> {
 
-    public static final String TAG = AMobManager.class.getSimpleName();
+    public static final String TAG = CorManager.class.getSimpleName();
 
     // SD卡写测试是否可写
     private boolean isSDcardCanWrite = false;
@@ -24,7 +24,7 @@ public abstract class AMobManager<A extends CorApplication> {
 
     protected A imContext;
 
-    public AMobManager(A mApplication) {
+    public CorManager(A mApplication) {
         this.imContext = mApplication;
 
     }

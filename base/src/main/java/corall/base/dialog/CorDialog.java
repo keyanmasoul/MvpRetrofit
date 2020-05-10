@@ -20,7 +20,7 @@ import androidx.annotation.Nullable;
 import cor.base.R;
 
 
-public class DialogPlus {
+public class CorDialog {
 
     private static final int INVALID = -1;
 
@@ -82,7 +82,7 @@ public class DialogPlus {
     private final Animation outAnim;
     private final Animation inAnim;
 
-    DialogPlus(DialogPlusBuilder builder) {
+    CorDialog(DialogPlusBuilder builder) {
         LayoutInflater layoutInflater = LayoutInflater.from(builder.getContext());
 
         Activity activity = (Activity) builder.getContext();
@@ -176,7 +176,7 @@ public class DialogPlus {
                     decorView.removeView(rootView);
                     isDismissing = false;
                     if (onDismissListener != null) {
-                        onDismissListener.onDismiss(DialogPlus.this);
+                        onDismissListener.onDismiss(CorDialog.this);
                     }
                 });
             }
@@ -309,7 +309,7 @@ public class DialogPlus {
                     if (onItemClickListener == null) {
                         return;
                     }
-                    onItemClickListener.onItemClick(DialogPlus.this, item, view, position);
+                    onItemClickListener.onItemClick(CorDialog.this, item, view, position);
                 }
             });
         }
@@ -353,7 +353,7 @@ public class DialogPlus {
                 if (onClickListener == null) {
                     return;
                 }
-                onClickListener.onClick(DialogPlus.this, v);
+                onClickListener.onClick(CorDialog.this, v);
             }
         });
     }
@@ -373,10 +373,10 @@ public class DialogPlus {
                 case KeyEvent.ACTION_UP:
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
                         if (onBackPressListener != null) {
-                            onBackPressListener.onBackPressed(DialogPlus.this);
+                            onBackPressListener.onBackPressed(CorDialog.this);
                         }
                         if (isCancelable) {
-                            onBackPressed(DialogPlus.this);
+                            onBackPressed(CorDialog.this);
                         }
                         return true;
                     }
@@ -391,9 +391,9 @@ public class DialogPlus {
     /**
      * Invoked when back button is pressed. Automatically dismiss the dialog.
      */
-    public void onBackPressed(@NonNull DialogPlus dialogPlus) {
+    public void onBackPressed(@NonNull CorDialog dialogPlus) {
         if (onCancelListener != null) {
-            onCancelListener.onCancel(DialogPlus.this);
+            onCancelListener.onCancel(CorDialog.this);
         }
         dismiss();
     }
@@ -406,7 +406,7 @@ public class DialogPlus {
         public boolean onTouch(View v, MotionEvent event) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 if (onCancelListener != null) {
-                    onCancelListener.onCancel(DialogPlus.this);
+                    onCancelListener.onCancel(CorDialog.this);
                 }
                 if (isCancelable) {
                     dismiss();

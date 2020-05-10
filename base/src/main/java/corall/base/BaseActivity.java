@@ -10,7 +10,6 @@ import android.content.res.TypedArray;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.provider.Settings;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -40,15 +39,13 @@ import cor.base.R;
 import corall.base.bean.DownloadEvent;
 import corall.base.bean.MessageEvent;
 import corall.base.bean.TaskEvent;
-import corall.base.dialog.DialogPlus;
+import corall.base.dialog.CorDialog;
 import corall.base.dialog.OverlayDialog;
 import corall.base.dialog.ViewHolder;
 import corall.base.task.CorTaskSign;
 import corall.base.util.StatusBarUtil;
 import corall.base.util.StringUtil;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -385,12 +382,12 @@ abstract public class BaseActivity extends AppCompatActivity {
 
     }
 
-    protected DialogPlus createDialog(int layoutId) {
+    protected CorDialog createDialog(int layoutId) {
         return createDialog(layoutId, false);
     }
 
-    protected DialogPlus createDialog(int layoutId, boolean cancelable) {
-        return DialogPlus.newDialog(this)
+    protected CorDialog createDialog(int layoutId, boolean cancelable) {
+        return CorDialog.newDialog(this)
                 .setCancelable(false)
                 .setContentHolder(new ViewHolder(layoutId))
                 .setGravity(Gravity.CENTER)

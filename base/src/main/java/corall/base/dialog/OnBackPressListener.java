@@ -10,6 +10,6 @@ public interface OnBackPressListener {
     /**
      * Invoked when DialogPlus receives any back press button event.
      */
-    void onBackPressed(@NonNull DialogPlus dialogPlus);
+    void onBackPressed(@NonNull CorDialog dialogPlus);
 
 }

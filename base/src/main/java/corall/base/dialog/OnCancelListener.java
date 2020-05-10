@@ -7,5 +7,5 @@ import androidx.annotation.NonNull;
  */
 public interface OnCancelListener {
 
-    void onCancel(@NonNull DialogPlus dialog);
+    void onCancel(@NonNull CorDialog dialog);
 }

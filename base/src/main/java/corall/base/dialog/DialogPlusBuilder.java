@@ -297,9 +297,9 @@ public class DialogPlusBuilder {
   /**
    * Create the dialog using this builder
    */
-  @NonNull public DialogPlus create() {
+  @NonNull public CorDialog create() {
     getHolder().setBackgroundResource(getContentBackgroundResource());
-    return new DialogPlus(this);
+    return new CorDialog(this);
   }
 
   @Nullable public View getFooterView() {

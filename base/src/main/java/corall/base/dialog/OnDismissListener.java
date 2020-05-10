@@ -8,5 +8,5 @@ import androidx.annotation.NonNull;
  * <p>It is invoked after animation is completed</p>
  */
 public interface OnDismissListener {
-    void onDismiss(@NonNull DialogPlus dialog);
+    void onDismiss(@NonNull CorDialog dialog);
 }

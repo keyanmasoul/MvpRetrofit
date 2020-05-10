@@ -3,9 +3,9 @@ package corall.base.app;
 /**
  * Mob模块的Bean对象管理器
  */
-public class MobBeanManager extends ABeanManager {
+public class CorBeanManager extends CBeanManager {
 
-    public MobBeanManager(CorApplication imContext) {
+    public CorBeanManager(CorApplication imContext) {
         super(imContext);
     }
 

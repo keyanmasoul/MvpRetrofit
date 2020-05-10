@@ -2,13 +2,13 @@ package corall.ad;
 
 import corall.ad.cache.AdsConfigCache;
 import corall.base.app.CorApplication;
-import corall.base.app.MobBeanManager;
+import corall.base.app.CorBeanManager;
 
 /**
  * Created by ChenLi on 2017/11/20.
  */
 
-public class AdsBeanManager extends MobBeanManager {
+public class AdsBeanManager extends CorBeanManager {
 
     private static final boolean DEBUG = false;
 
