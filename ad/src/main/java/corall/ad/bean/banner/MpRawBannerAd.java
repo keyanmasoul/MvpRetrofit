@@ -11,7 +11,7 @@ import com.mopub.mobileads.MoPubView;
 import corall.ad.AdsContants;
 import corall.ad.R;
 import corall.ad.bean.listener.banner.BannerLoadListener;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 import corall.base.util.ScreenUtil;
 
 import static corall.ad.AdsContants.RAW_AD_STATUS_DESTROYED;
@@ -130,15 +130,15 @@ public class MpRawBannerAd extends RawBannerAd {
 
     private void initRealBannerAd() throws Exception {
         if (realBannerAd == null) {
-            bannerView = LayoutInflater.from(AMApplication.getInstance()).inflate(R.layout.mp_banner_layout, null);
+            bannerView = LayoutInflater.from(CorApplication.getInstance()).inflate(R.layout.mp_banner_layout, null);
 
             realBannerAd = bannerView.findViewById(R.id.ad_mopub_banner_view);
             setAutorefreshEnabled(isAutorefreshEnabled);
 
             if (widthDp > 0 && heightDp > 0) {
                 FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) ((View) realBannerAd).getLayoutParams();
-                params.width = ScreenUtil.dp2px(AMApplication.getInstance(), widthDp);
-                params.height = ScreenUtil.dp2px(AMApplication.getInstance(), heightDp);
+                params.width = ScreenUtil.dp2px(CorApplication.getInstance(), widthDp);
+                params.height = ScreenUtil.dp2px(CorApplication.getInstance(), heightDp);
             }
 
             realBannerAd.setAdUnitId(id);

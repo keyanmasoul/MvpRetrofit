@@ -8,7 +8,7 @@ import com.google.android.gms.ads.InterstitialAd;
 
 import corall.ad.AdsContants;
 import corall.ad.bean.listener.interstitialad.InterstitialAdLoadListener;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 import static corall.ad.AdsContants.RAW_AD_STATUS_DESTROYED;
 
@@ -91,7 +91,7 @@ public class AMRawInterstitialAd extends RawInterstitialAd {
     private void initRealIntersititialAd(Activity activity) {
         if (realInterstitialAd == null) {
             if (activity == null) {
-                realInterstitialAd = new InterstitialAd(AMApplication.getInstance());
+                realInterstitialAd = new InterstitialAd(CorApplication.getInstance());
             } else {
                 realInterstitialAd = new InterstitialAd(activity);
             }

@@ -10,4 +10,5 @@
         type="id" />
     <item name="msg_download_event"
         type="id" />
+    <item name="msg_task_event" type="id" />
 </resources>

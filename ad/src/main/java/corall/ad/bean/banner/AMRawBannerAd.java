@@ -11,7 +11,7 @@ import com.google.android.gms.ads.AdView;
 import corall.ad.AdsContants;
 import corall.ad.R;
 import corall.ad.bean.listener.banner.BannerLoadListener;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 import static corall.ad.AdsContants.RAW_AD_STATUS_DESTROYED;
 
@@ -124,7 +124,7 @@ public class AMRawBannerAd extends RawBannerAd {
 
     private void initRealBannerAd() throws Exception {
         if (realBannerAd == null) {
-            realBannerAd = new AdView(AMApplication.getInstance());
+            realBannerAd = new AdView(CorApplication.getInstance());
             realBannerAd.setAdUnitId(id);
 
             if (customAdSize == null) {

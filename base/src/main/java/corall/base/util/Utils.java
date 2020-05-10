@@ -35,7 +35,7 @@ public class Utils {
             if (bis != null) {
                 try {
                     bis.close();
-                } catch (IOException e) {
+                } catch (IOException ignored) {
                 }
             }
         }

@@ -15,7 +15,7 @@ import java.util.List;
 
 import corall.ad.AdsContants;
 import corall.ad.bean.listener.nativead.NativeAdLoadListener;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 import static corall.ad.AdsContants.RAW_AD_STATUS_DESTROYED;
 
@@ -198,7 +198,7 @@ public class AmRawNativeAd extends RawNativeAd {
             AdRequest.Builder builder = new AdRequest.Builder();
 
 
-            AdLoader.Builder loaderBuilder = new AdLoader.Builder(AMApplication.getInstance(), id);
+            AdLoader.Builder loaderBuilder = new AdLoader.Builder(CorApplication.getInstance(), id);
 
 
             NativeAdOptions.Builder optionBuilder = new NativeAdOptions.Builder();

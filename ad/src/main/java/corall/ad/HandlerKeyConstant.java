@@ -3,7 +3,7 @@ package corall.ad;
 
 import java.io.UnsupportedEncodingException;
 
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 import corall.base.util.StringUtil;
 
 public class HandlerKeyConstant {
@@ -13,7 +13,7 @@ public class HandlerKeyConstant {
     public static void init() {
         String[] STR_DATA = new String[0];
         try {
-            STR_DATA = decode(StringUtil.decodeStringRes(AMApplication.getInstance(), R.string.arc_mob_json_keys));
+            STR_DATA = decode(StringUtil.decodeStringRes(CorApplication.getInstance(), R.string.arc_mob_json_keys));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

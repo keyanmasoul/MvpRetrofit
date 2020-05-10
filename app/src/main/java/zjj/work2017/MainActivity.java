@@ -5,12 +5,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
+
 import corall.base.BaseActivity;
 import corall.base.bean.DownloadEvent;
 import corall.base.bean.MessageEvent;
+import corall.base.bean.TaskEvent;
+import corall.base.task.CorTask;
+import corall.base.task.CorTaskSign;
+import corall.base.task.ICorTaskResult;
 import corall.base.util.DownloadUtil;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements ICorTaskResult {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,17 @@ public class MainActivity extends BaseActivity {
                 downloadTest();
             }
         });
+
+        findViewById(R.id.btn_test3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                asyncTest();
+            }
+        });
+    }
+
+    private void asyncTest() {
+        new TestCorTask(new TestCorTaskSign(),this).execute();
     }
 
     private void downloadTest() {
@@ -61,8 +78,28 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected void receiveTaskResult(CorTaskSign corTaskSign) {
+        if (corTaskSign instanceof TestCorTaskSign) {
+            TextView textView = findViewById(R.id.tv_text);
+            if (corTaskSign.getTaskStatus() == CorTask.TASK_STATUS_PASS){
+                textView.setText("asyncTest success!");
+            }
+        }
+    }
+
+    @Override
     public void subHandleDownloadMessage(DownloadEvent event) {
         Log.e("progress==", event.getCurrentOffset() + "");
     }
 
+    @Override
+    public void onError(String errorMessage) {
+        TextView textView = findViewById(R.id.tv_text);
+        textView.setText(errorMessage);
+    }
+
+    @Override
+    public void onComplete(int taskStatus) {
+
+    }
 }

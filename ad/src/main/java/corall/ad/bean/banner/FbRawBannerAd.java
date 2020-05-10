@@ -12,7 +12,7 @@ import com.facebook.ads.AdView;
 import corall.ad.AdsContants;
 import corall.ad.R;
 import corall.ad.bean.listener.banner.BannerLoadListener;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 import static corall.ad.AdsContants.RAW_AD_STATUS_DESTROYED;
 
@@ -109,7 +109,7 @@ public class FbRawBannerAd extends RawBannerAd {
     private void initRealBannerAd() throws Exception {
         if (realBannerAd == null) {
             AdSize adSize = getAdSize();
-            realBannerAd = new AdView(AMApplication.getInstance(), id, adSize);
+            realBannerAd = new AdView(CorApplication.getInstance(), id, adSize);
         }
     }
 

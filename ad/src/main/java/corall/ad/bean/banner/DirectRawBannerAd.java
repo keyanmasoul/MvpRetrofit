@@ -10,7 +10,7 @@ import corall.ad.bean.listener.banner.BannerLoadListener;
 import corall.ad.web.AdBannerWebViewClient;
 import corall.ad.web.AdWebChromeClient;
 import corall.ad.web.IWebViewController;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 public class DirectRawBannerAd extends RawBannerAd {
     private String id;
@@ -57,7 +57,7 @@ public class DirectRawBannerAd extends RawBannerAd {
     @Override
     public View getBannerView() {
         if (realBannerAd == null) {
-            realBannerAd = new WebView(AMApplication.getInstance());
+            realBannerAd = new WebView(CorApplication.getInstance());
             initWebView(realBannerAd);
             realBannerAd.loadUrl(url);
         }
@@ -128,7 +128,7 @@ public class DirectRawBannerAd extends RawBannerAd {
         webSettings.setAppCacheMaxSize(Long.MAX_VALUE);
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
-        String appCacheDir = AMApplication.getInstance().getCacheDir().getAbsolutePath();
+        String appCacheDir = CorApplication.getInstance().getCacheDir().getAbsolutePath();
         webSettings.setDatabaseEnabled(true);
         //下面设置需配套使用，否则会导致加载大型页面时，页面异常
         webSettings.setUseWideViewPort(true);

@@ -1,13 +1,12 @@
 package corall.base.util;
 
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 public class KeyUtil {
 
-    public final static String getKey(int res){
-        String title = StringUtil.decodeStringRes(AMApplication.getInstance(), res);
-        String[] name = AMApplication.getInstance().getPackageName().split("\\.");
-        String key = title + "_" + name[1] + "_" + name[2].substring(0,1);
-        return key;
+    public static String getKey(int res){
+        String title = StringUtil.decodeStringRes(CorApplication.getInstance(), res);
+        String[] name = CorApplication.getInstance().getPackageName().split("\\.");
+        return title + "_" + name[1] + "_" + name[2].substring(0,1);
     }
 }

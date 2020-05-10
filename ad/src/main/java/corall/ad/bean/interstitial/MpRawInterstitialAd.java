@@ -8,7 +8,7 @@ import com.mopub.mobileads.MoPubInterstitial;
 
 import corall.ad.AdsContants;
 import corall.ad.bean.listener.interstitialad.InterstitialAdLoadListener;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 import static corall.ad.AdsContants.RAW_AD_STATUS_DESTROYED;
 
@@ -104,7 +104,7 @@ public class MpRawInterstitialAd extends RawInterstitialAd {
     private void initRealIntersititialAd(Activity activity) throws Exception {
         if (realInterstitialAd == null) {
             if (activity == null) {
-                realInterstitialAd = new MoPubInterstitial(AMApplication.getInstance(), id);
+                realInterstitialAd = new MoPubInterstitial(CorApplication.getInstance(), id);
             } else {
                 realInterstitialAd = new MoPubInterstitial(activity, id);
             }

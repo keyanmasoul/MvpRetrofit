@@ -9,7 +9,7 @@ import android.content.pm.PackageManager;
  *
  * Created by linlin_91 on 2015/6/23.
  */
-public abstract class AMobManager<A extends AMApplication> {
+public abstract class AMobManager<A extends CorApplication> {
 
     public static final String TAG = AMobManager.class.getSimpleName();
 

@@ -1,7 +1,7 @@
 package corall.ad.bean;
 
 import corall.ad.AdsContants;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 import corall.base.util.StringUtil;
 
 /**
@@ -43,7 +43,7 @@ public abstract class RawAd {
 
 
     protected String decodeMethod(int res) {
-        return StringUtil.decodeStringRes(AMApplication.getInstance(), res);
+        return StringUtil.decodeStringRes(CorApplication.getInstance(), res);
     }
 
 

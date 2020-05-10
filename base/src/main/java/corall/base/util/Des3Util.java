@@ -1,8 +1,11 @@
 package corall.base.util;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -43,12 +46,8 @@ public class Des3Util {
             // 初始化为加密模式
             c1.init(Cipher.ENCRYPT_MODE, desKey);
             return c1.doFinal(src);
-        } catch (java.security.NoSuchAlgorithmException e1) {
+        } catch (Exception e1) {
             e1.printStackTrace();
-        } catch (javax.crypto.NoSuchPaddingException e2) {
-            e2.printStackTrace();
-        } catch (Exception e3) {
-            e3.printStackTrace();
         }
         return null;
     }
@@ -67,12 +66,8 @@ public class Des3Util {
             // 初始化为解密模式
             c1.init(Cipher.DECRYPT_MODE, desKey);
             return c1.doFinal(src);
-        } catch (java.security.NoSuchAlgorithmException e1) {
+        } catch (Exception e1) {
             e1.printStackTrace();
-        } catch (javax.crypto.NoSuchPaddingException e2) {
-            e2.printStackTrace();
-        } catch (Exception e3) {
-            e3.printStackTrace();
         }
         return null;
     }
@@ -89,19 +84,15 @@ public class Des3Util {
         //声明一个24位的字节数组，默认里面都是0
         byte[] key = new byte[24];
         //将字符串转成字节数组
-        byte[] temp = keyStr.getBytes("UTF-8");
+        byte[] temp = keyStr.getBytes(StandardCharsets.UTF_8);
 
         /*
          * 执行数组拷贝
          * System.arraycopy(源数组，从源数组哪里开始拷贝，目标数组，拷贝多少位)
          */
-        if (key.length > temp.length) {
-            // 如果temp不够24位，则拷贝temp数组整个长度的内容到key数组中
-            System.arraycopy(temp, 0, key, 0, temp.length);
-        } else {
-            // 如果temp大于24位，则拷贝temp数组24个长度的内容到key数组中
-            System.arraycopy(temp, 0, key, 0, key.length);
-        }
+        // 如果temp不够24位，则拷贝temp数组整个长度的内容到key数组中
+        // 如果temp大于24位，则拷贝temp数组24个长度的内容到key数组中
+        System.arraycopy(temp, 0, key, 0, Math.min(key.length, temp.length));
         return key;
     }
 

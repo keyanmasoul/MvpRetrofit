@@ -23,14 +23,13 @@ import io.reactivex.disposables.Disposable;
 /**
  * 全局应用环境抽象类
  * <p/>
- * Created by linlin_91 on 2015/6/17.
  */
-public abstract class AMApplication<B extends MobBeanManager, D extends AMobManager> extends Application {
+public abstract class CorApplication<B extends MobBeanManager, D extends AMobManager> extends Application {
 
-    public static final String TAG = AMApplication.class.getSimpleName();
+    public static final String TAG = CorApplication.class.getSimpleName();
 
     // 全局唯一本類實例
-    private static AMApplication mAMApplication;
+    private static CorApplication corApplication;
 
     // 最后一次更新时间
     protected volatile long lastInitTimestamp;
@@ -46,8 +45,8 @@ public abstract class AMApplication<B extends MobBeanManager, D extends AMobMana
      *
      * @return
      */
-    public static AMApplication getInstance() {
-        return mAMApplication;
+    public static CorApplication getInstance() {
+        return corApplication;
     }
 
 
@@ -61,8 +60,8 @@ public abstract class AMApplication<B extends MobBeanManager, D extends AMobMana
             //手动把系统context代理到这个application里
             attachBaseContext(application.getBaseContext());
 
-            if (mAMApplication == null) {
-                mAMApplication = this;
+            if (corApplication == null) {
+                corApplication = this;
             }
 
             // 预初始化
@@ -90,7 +89,7 @@ public abstract class AMApplication<B extends MobBeanManager, D extends AMobMana
         super.onCreate();
         try {
 
-            mAMApplication = this;
+            corApplication = this;
             // 预初始化
             preInitApplication();
 

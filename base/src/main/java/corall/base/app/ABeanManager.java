@@ -15,9 +15,9 @@ public abstract class ABeanManager {
     protected static final ConcurrentHashMap<String, Object> singletonInstanceMap = new ConcurrentHashMap<String,
             Object>(200, 0.75f, 1);
 
-    protected AMApplication imContext;
+    protected CorApplication imContext;
 
-    public ABeanManager(AMApplication imContext) {
+    public ABeanManager(CorApplication imContext) {
         this.imContext = imContext;
 
     }

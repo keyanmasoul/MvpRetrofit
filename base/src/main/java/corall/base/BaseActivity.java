@@ -38,9 +38,11 @@ import java.util.concurrent.TimeUnit;
 
 import corall.base.bean.DownloadEvent;
 import corall.base.bean.MessageEvent;
+import corall.base.bean.TaskEvent;
 import corall.base.dialog.DialogPlus;
 import corall.base.dialog.OverlayDialog;
 import corall.base.dialog.ViewHolder;
+import corall.base.task.CorTaskSign;
 import corall.base.util.StatusBarUtil;
 import corall.base.util.StringUtil;
 import io.reactivex.Observable;
@@ -282,7 +284,9 @@ abstract public class BaseActivity extends AppCompatActivity {
     public void handleMessage(MessageEvent messageEvent) {
         if (messageEvent instanceof DownloadEvent) {
             subHandleDownloadMessage((DownloadEvent) messageEvent);
-        } else {
+        } else if (messageEvent instanceof TaskEvent){
+            receiveTaskResult(((TaskEvent) messageEvent).getCorTaskSign());
+        }else {
             subHandleMessage(messageEvent);
         }
     }
@@ -292,6 +296,8 @@ abstract public class BaseActivity extends AppCompatActivity {
     }
 
     abstract protected void subHandleMessage(MessageEvent messageEvent);
+
+    abstract protected void receiveTaskResult(CorTaskSign corTaskSign);
 
     protected void startActivityAnim(Class pointClass) {
         Intent intent = new Intent(this, pointClass);

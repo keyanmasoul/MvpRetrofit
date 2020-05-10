@@ -16,7 +16,7 @@ import java.util.List;
 
 import corall.ad.AdsContants;
 import corall.ad.bean.listener.nativead.NativeAdLoadListener;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 import static corall.ad.AdsContants.RAW_AD_STATUS_DESTROYED;
 
@@ -160,7 +160,7 @@ public class FbRawNativeAd extends RawNativeAd {
             return null;
         }
         try {
-            AdOptionsView adOptionsView = new AdOptionsView(AMApplication.getInstance(), realNativeAd, adLayout);
+            AdOptionsView adOptionsView = new AdOptionsView(CorApplication.getInstance(), realNativeAd, adLayout);
             return adOptionsView;
         } catch (Exception e) {
             return null;
@@ -292,7 +292,7 @@ public class FbRawNativeAd extends RawNativeAd {
 
     private void initRealNativeAd() throws Exception {
         if (realNativeAd == null) {
-            realNativeAd = new NativeAd(AMApplication.getInstance(), id);
+            realNativeAd = new NativeAd(CorApplication.getInstance(), id);
         }
     }
 

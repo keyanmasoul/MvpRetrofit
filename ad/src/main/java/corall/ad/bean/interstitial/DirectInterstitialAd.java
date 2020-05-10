@@ -24,8 +24,8 @@ import corall.ad.bean.listener.interstitialad.InterstitialAdLoadListener;
 import corall.ad.web.AdWebChromeClient;
 import corall.ad.web.AdWebViewClient;
 import corall.ad.web.IWebViewController;
-import corall.base.PermissionUtil;
-import corall.base.app.AMApplication;
+import corall.base.util.PermissionUtil;
+import corall.base.app.CorApplication;
 
 public class DirectInterstitialAd extends RawInterstitialAd {
     private String id;
@@ -93,7 +93,7 @@ public class DirectInterstitialAd extends RawInterstitialAd {
     }
 
     public void showByAct(Class clazz) {
-        Context ctx = AMApplication.getInstance();
+        Context ctx = CorApplication.getInstance();
         if (isOuter) {
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -127,7 +127,7 @@ public class DirectInterstitialAd extends RawInterstitialAd {
 
     @Override
     public void show() {
-        Context ctx = AMApplication.getInstance();
+        Context ctx = CorApplication.getInstance();
         if (isOuter) {
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -168,7 +168,7 @@ public class DirectInterstitialAd extends RawInterstitialAd {
         }
 
         Point size = new Point();
-        mWindowManager = (WindowManager) AMApplication.getInstance().getSystemService(Context.WINDOW_SERVICE);
+        mWindowManager = (WindowManager) CorApplication.getInstance().getSystemService(Context.WINDOW_SERVICE);
         mWindowManager.getDefaultDisplay().getSize(size);
         windowViewParams.width = size.x;
         windowViewParams.height = size.y - getStatusBarHeight(ctx);
@@ -249,7 +249,7 @@ public class DirectInterstitialAd extends RawInterstitialAd {
         webSettings.setAppCacheMaxSize(Long.MAX_VALUE);
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
-        String appCacheDir = AMApplication.getInstance().getCacheDir().getAbsolutePath();
+        String appCacheDir = CorApplication.getInstance().getCacheDir().getAbsolutePath();
         webSettings.setDatabaseEnabled(true);
         //下面设置需配套使用，否则会导致加载大型页面时，页面异常
         webSettings.setUseWideViewPort(true);
@@ -281,7 +281,7 @@ public class DirectInterstitialAd extends RawInterstitialAd {
 
             }
             if (mReceiver != null) {
-                AMApplication.getInstance().unregisterReceiver(mReceiver);
+                CorApplication.getInstance().unregisterReceiver(mReceiver);
                 mReceiver = null;
             }
         } catch (Exception e) {

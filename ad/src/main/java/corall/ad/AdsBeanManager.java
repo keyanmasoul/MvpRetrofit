@@ -1,7 +1,7 @@
 package corall.ad;
 
 import corall.ad.cache.AdsConfigCache;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 import corall.base.app.MobBeanManager;
 
 /**
@@ -14,7 +14,7 @@ public class AdsBeanManager extends MobBeanManager {
 
     private AdsModule adsModule;
 
-    public AdsBeanManager(AMApplication imContext, AdsModule adsModule) {
+    public AdsBeanManager(CorApplication imContext, AdsModule adsModule) {
         super(imContext);
         this.adsModule = adsModule;
     }

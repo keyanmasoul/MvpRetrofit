@@ -10,13 +10,13 @@ import android.os.Message;
 public abstract class AModule {
 
     // 应用类型
-    protected AMApplication imContext;
+    protected CorApplication imContext;
     // 缓存标示
     protected String moduleMark;
     // 是否已经初始化了
     private volatile boolean inited;
 
-    public AModule(AMApplication context, String moduleMark) {
+    public AModule(CorApplication context, String moduleMark) {
         this.imContext = context;
         this.moduleMark = moduleMark;
 

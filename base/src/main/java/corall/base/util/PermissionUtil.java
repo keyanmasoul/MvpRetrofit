@@ -1,4 +1,4 @@
-package corall.base;
+package corall.base.util;
 
 import android.app.AppOpsManager;
 import android.app.Dialog;

@@ -24,8 +24,8 @@ import java.util.List;
 import corall.ad.bean.CorAdPlace;
 import corall.ad.bean.CorAdUnionPlace;
 import corall.ad.cache.AdsConfigCache;
-import corall.base.RxAsyncTask;
-import corall.base.app.AMApplication;
+import corall.base.task.CorTask;
+import corall.base.app.CorApplication;
 import corall.base.app.AModule;
 import corall.base.util.AppInfoUtil;
 import corall.base.util.Des3Util;
@@ -64,7 +64,7 @@ public class AdsModule extends AModule {
     private boolean alreadyInitAd;
     private AdvInitListener mInitListener;
 
-    public AdsModule(AMApplication context, String moduleMark) {
+    public AdsModule(CorApplication context, String moduleMark) {
         super(context, moduleMark);
         isTesting = false;
         decodeOff = -3;
@@ -325,7 +325,7 @@ public class AdsModule extends AModule {
 
             SdkConfiguration configuration = builder.build();
 
-            MoPub.initializeSdk(AMApplication.getInstance(), configuration, new SdkInitializationListener() {
+            MoPub.initializeSdk(CorApplication.getInstance(), configuration, new SdkInitializationListener() {
                 @Override
                 public void onInitializationFinished() {
                     isMopubInit = true;
@@ -370,7 +370,7 @@ public class AdsModule extends AModule {
         }
     }
 
-    class LoadAdTask extends RxAsyncTask {
+    class LoadAdTask extends CorTask {
 
         @Override
         protected Object call(Object[] objects) {
@@ -395,7 +395,7 @@ public class AdsModule extends AModule {
         }
 
         private String getAssetsAdConfig() {
-            AMApplication aMApplication = AMApplication.getInstance();
+            CorApplication aMApplication = CorApplication.getInstance();
             String localAdConfig = Utils.getAssetsFileContent(aMApplication, AdsContants.ASSETS_AD_CONFIG_PATH + BuildConfig.APP_ID);
             if (TextUtils.isEmpty(localAdConfig)) {
                 localAdConfig = Utils.getAssetsFileContent(aMApplication, AdsContants.ASSETS_AD_CONFIG_PATH + "default");
@@ -425,7 +425,7 @@ public class AdsModule extends AModule {
         private String decrypt3DES(String localAdConfig) {
             String decryptAdConfig = "";
             try {
-                String sha1SingInfo = AppInfoUtil.getSha1SingInfo(AMApplication.getInstance());
+                String sha1SingInfo = AppInfoUtil.getSha1SingInfo(CorApplication.getInstance());
                 decryptAdConfig = Des3Util.decrypt(localAdConfig, sha1SingInfo);
             } catch (Exception e) {
                 e.printStackTrace();

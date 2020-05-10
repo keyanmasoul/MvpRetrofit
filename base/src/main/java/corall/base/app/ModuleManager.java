@@ -21,7 +21,7 @@ public class ModuleManager {
 
     public static final String TAG = ModuleManager.class.getSimpleName();
 
-    private Map<String, AMApplication> mContentMap = new HashMap<>();
+    private Map<String, CorApplication> mContentMap = new HashMap<>();
 
     /**
      * 如果没有传 moduleMark 就使用默认标识
@@ -39,7 +39,7 @@ public class ModuleManager {
      * 兼容早起版本写法。
      * @param imContext
      */
-    public ModuleManager(AMApplication imContext) {
+    public ModuleManager(CorApplication imContext) {
         putContentByModuleMark(imContext, DEFAULT_IMCONTEXT);
     }
 
@@ -50,7 +50,7 @@ public class ModuleManager {
      * @param imContext
      * @param moduleMark 模块标志
      */
-    public void putContentByModuleMark(AMApplication imContext, String moduleMark) {
+    public void putContentByModuleMark(CorApplication imContext, String moduleMark) {
         mContentMap.put(moduleMark, imContext);
 
     }
@@ -61,8 +61,8 @@ public class ModuleManager {
      * @param moduleMark 模块标志
      * @return
      */
-    private AMApplication getContentByModuleMark(String moduleMark) {
-        AMApplication imContext = mContentMap.get(moduleMark);
+    private CorApplication getContentByModuleMark(String moduleMark) {
+        CorApplication imContext = mContentMap.get(moduleMark);
         //兼容旧版写法
         if (imContext == null) {
             imContext = mContentMap.get(DEFAULT_IMCONTEXT);
@@ -220,7 +220,7 @@ public class ModuleManager {
                 }
 
                 // 加载模块
-                AMApplication imContext = getContentByModuleMark(moduleMark);
+                CorApplication imContext = getContentByModuleMark(moduleMark);
                 module = doBuildModule(imContext, moduleMark, mConfig.getModule());
                 if (module != null) {
                     // 把加载的模块存到模块映射中
@@ -240,7 +240,7 @@ public class ModuleManager {
      * @param aModule     缓存实现完整类
      * @return
      */
-    private AModule doBuildModule(AMApplication amApplication, String key,AModule aModule) throws Exception {
+    private AModule doBuildModule(CorApplication amApplication, String key, AModule aModule) throws Exception {
         if(aModule!=null) {
             // 创建模块
             aModule.buildModule();

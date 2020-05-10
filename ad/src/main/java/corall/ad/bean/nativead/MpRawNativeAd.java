@@ -17,7 +17,7 @@ import java.util.List;
 import corall.ad.AdsContants;
 import corall.ad.R;
 import corall.ad.bean.listener.nativead.NativeAdLoadListener;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 import static corall.ad.AdsContants.RAW_AD_STATUS_DESTROYED;
 
@@ -172,7 +172,7 @@ public class MpRawNativeAd extends RawNativeAd {
         if (realLoadedNativeAd == null) {
             return null;
         }
-        AdapterHelper helper = new AdapterHelper(AMApplication.getInstance(), 0, 3);
+        AdapterHelper helper = new AdapterHelper(CorApplication.getInstance(), 0, 3);
         View v = helper.getAdView(null, null, realLoadedNativeAd, null);
         return v;
     }
@@ -213,7 +213,7 @@ public class MpRawNativeAd extends RawNativeAd {
 
     private void initRealNativeAd() throws Exception {
         if (realNativeAd == null) {
-            realNativeAd = new MoPubNative(AMApplication.getInstance(), id, new MoPubNative.MoPubNativeNetworkListener() {
+            realNativeAd = new MoPubNative(CorApplication.getInstance(), id, new MoPubNative.MoPubNativeNetworkListener() {
                 @Override
                 public void onNativeLoad(NativeAd nativeAd) {
                     realLoadedNativeAd = nativeAd;

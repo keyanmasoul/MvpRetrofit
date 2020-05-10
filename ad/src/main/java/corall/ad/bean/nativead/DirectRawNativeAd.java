@@ -14,7 +14,7 @@ import java.util.List;
 
 import corall.ad.AdsContants;
 import corall.ad.bean.listener.nativead.NativeAdLoadListener;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 public class DirectRawNativeAd extends RawNativeAd implements View.OnClickListener {
 
@@ -184,7 +184,7 @@ public class DirectRawNativeAd extends RawNativeAd implements View.OnClickListen
     }
 
     public void open() {
-        Context ctx = AMApplication.getInstance();
+        Context ctx = CorApplication.getInstance();
         //如果有包名，判断该包名是否安装，如果已安装打开应用，如果没安装跳转gp
         if (!TextUtils.isEmpty(pkgName)) {
             PackageInfo packageInfo = null;

@@ -10,7 +10,7 @@ import com.facebook.ads.InterstitialAdListener;
 import corall.ad.AdsContants;
 import corall.ad.R;
 import corall.ad.bean.listener.interstitialad.InterstitialAdLoadListener;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 import static corall.ad.AdsContants.RAW_AD_STATUS_DESTROYED;
 
@@ -147,7 +147,7 @@ public class FbRawInterstitialAd extends RawInterstitialAd {
             if (activity != null) {
                 realInterstitialAd = new InterstitialAd(activity, id);
             } else {
-                realInterstitialAd = new InterstitialAd(AMApplication.getInstance(), id);
+                realInterstitialAd = new InterstitialAd(CorApplication.getInstance(), id);
             }
         }
     }

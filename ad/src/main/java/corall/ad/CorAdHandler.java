@@ -32,7 +32,7 @@ import corall.ad.bean.nativead.RawNativeAd;
 import corall.ad.bean.reward.AMRawRewardAd;
 import corall.ad.bean.reward.MpRawRewardAd;
 import corall.ad.bean.reward.RawRewardAd;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 import corall.base.util.StringUtil;
 
 /**
@@ -541,7 +541,7 @@ public class CorAdHandler {
 
 
     protected String getString(int res) {
-        return StringUtil.decodeStringRes(AMApplication.getInstance(), res);
+        return StringUtil.decodeStringRes(CorApplication.getInstance(), res);
     }
 
     public List<CorAdPlace> getAdsList() {

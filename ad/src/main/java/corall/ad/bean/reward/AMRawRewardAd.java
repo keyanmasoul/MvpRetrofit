@@ -11,7 +11,7 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 import corall.ad.AdsContants;
 import corall.ad.bean.listener.reward.RewardAdListener;
-import corall.base.app.AMApplication;
+import corall.base.app.CorApplication;
 
 import static corall.ad.AdsContants.RAW_AD_STATUS_DESTROYED;
 
@@ -115,7 +115,7 @@ public class AMRawRewardAd extends RawRewardAd {
     private void initRealRewardAd(Activity activity) {
         if (realRewardAd == null) {
             if (activity == null) {
-                realRewardAd = MobileAds.getRewardedVideoAdInstance(AMApplication.getInstance());
+                realRewardAd = MobileAds.getRewardedVideoAdInstance(CorApplication.getInstance());
             } else {
                 realRewardAd = MobileAds.getRewardedVideoAdInstance(activity);
             }

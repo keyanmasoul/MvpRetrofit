@@ -2,11 +2,10 @@ package corall.base.app;
 
 /**
  * Mob模块的Bean对象管理器
- * Created by linlin_91 on 2015/6/17.
  */
 public class MobBeanManager extends ABeanManager {
 
-    public MobBeanManager(AMApplication imContext) {
+    public MobBeanManager(CorApplication imContext) {
         super(imContext);
     }
 
@@ -40,7 +39,7 @@ public class MobBeanManager extends ABeanManager {
      * @param moduleMark  不同模块的标记key
      * @return
      */
-    public ModuleManager getModuleManager(AMApplication imContext, String moduleMark){
+    public ModuleManager getModuleManager(CorApplication imContext, String moduleMark){
         ModuleManager moduleManager = getBean(ModuleManager.class);
         moduleManager.putContentByModuleMark(imContext, moduleMark);
 
