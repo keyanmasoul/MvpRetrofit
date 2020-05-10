@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import zjj.network.R;
+import cor.base.R;
 
 
 public class ViewHolder implements Holder {

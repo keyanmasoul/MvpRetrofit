@@ -9,7 +9,7 @@ import android.widget.AbsListView;
 
 import androidx.annotation.Nullable;
 
-import zjj.network.R;
+import cor.base.R;
 
 
 final class Utils {

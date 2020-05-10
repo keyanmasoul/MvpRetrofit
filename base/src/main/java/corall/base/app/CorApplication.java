@@ -6,15 +6,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Message;
+import android.util.Log;
 
 import com.orhanobut.hawk.Hawk;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import corall.base.bean.GlobalMessageEvent;
 import corall.base.bean.MessageEvent;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -154,6 +158,7 @@ public abstract class CorApplication<B extends MobBeanManager, D extends AMobMan
         // Mob模块的Bean管理器初始化，要在所有实例前进行
         mBeanManager = createBeanManager();
 
+        EventBus.getDefault().register(this);
         // 初始化基础数据
         initContextConfig();
 
@@ -167,6 +172,11 @@ public abstract class CorApplication<B extends MobBeanManager, D extends AMobMan
         // 扩展模块管理
         initSubModules();
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleGlobalMessage(GlobalMessageEvent event) {
+        Log.d("handleGlobalMessage", event.toString());
     }
 
     /**

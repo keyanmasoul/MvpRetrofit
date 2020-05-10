@@ -17,7 +17,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import zjj.network.R;
+import cor.base.R;
 
 
 public class DialogPlus {

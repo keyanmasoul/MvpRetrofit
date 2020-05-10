@@ -7,7 +7,7 @@ import android.view.View;
 import androidx.annotation.StringRes;
 
 import corall.base.util.StringUtil;
-import zjj.network.R;
+import cor.base.R;
 
 abstract public class BaseDialog {
 

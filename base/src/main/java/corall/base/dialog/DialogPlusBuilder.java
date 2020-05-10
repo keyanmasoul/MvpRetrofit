@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 
 import java.util.Arrays;
 
-import zjj.network.R;
+import cor.base.R;
 
 
 public class DialogPlusBuilder {

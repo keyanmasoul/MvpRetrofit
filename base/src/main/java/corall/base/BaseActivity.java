@@ -36,6 +36,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import cor.base.R;
 import corall.base.bean.DownloadEvent;
 import corall.base.bean.MessageEvent;
 import corall.base.bean.TaskEvent;
@@ -50,7 +51,6 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import zjj.network.R;
 
 /**
  * BaseActivity

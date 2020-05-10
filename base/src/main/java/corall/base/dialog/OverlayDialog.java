@@ -3,8 +3,8 @@ package corall.base.dialog;
 import android.app.Activity;
 import android.widget.TextView;
 
+import cor.base.R;
 import corall.base.util.OverlaySetting;
-import zjj.network.R;
 
 public class OverlayDialog extends BaseDialog {
 

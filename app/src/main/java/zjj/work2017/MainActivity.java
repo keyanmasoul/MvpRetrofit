@@ -7,8 +7,11 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import corall.base.BaseActivity;
 import corall.base.bean.DownloadEvent;
+import corall.base.bean.GlobalMessageEvent;
 import corall.base.bean.MessageEvent;
 import corall.base.bean.TaskEvent;
 import corall.base.task.CorTask;
@@ -57,6 +60,17 @@ public class MainActivity extends BaseActivity implements ICorTaskResult {
                 asyncTest();
             }
         });
+
+        findViewById(R.id.btn_test4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendGlobalMessage();
+            }
+        });
+    }
+
+    private void sendGlobalMessage() {
+        EventBus.getDefault().post(new GlobalMessageEvent());
     }
 
     private void asyncTest() {

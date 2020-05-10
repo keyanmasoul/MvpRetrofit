@@ -14,7 +14,7 @@ import androidx.annotation.RequiresApi;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import zjj.network.R;
+import cor.base.R;
 
 public class PermissionUtil {
 

@@ -9,7 +9,7 @@ import android.widget.GridView;
 
 import androidx.annotation.NonNull;
 
-import zjj.network.R;
+import cor.base.R;
 
 
 public class GridHolder implements HolderAdapter, AdapterView.OnItemClickListener {

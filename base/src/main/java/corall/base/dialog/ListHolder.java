@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 
-import zjj.network.R;
+import cor.base.R;
 
 
 public class ListHolder implements HolderAdapter, AdapterView.OnItemClickListener {

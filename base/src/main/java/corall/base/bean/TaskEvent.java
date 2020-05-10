@@ -1,7 +1,7 @@
 package corall.base.bean;
 
 import corall.base.task.CorTaskSign;
-import zjj.network.R;
+import cor.base.R;
 
 public class TaskEvent extends MessageEvent {
 

@@ -2,7 +2,7 @@ package corall.base.bean;
 
 import com.liulishuo.okdownload.SpeedCalculator;
 
-import zjj.network.R;
+import cor.base.R;
 
 
 public class DownloadEvent extends MessageEvent {
