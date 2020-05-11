@@ -9,7 +9,25 @@ public class DownloadEvent extends MessageEvent {
     private long currentOffset;
     private SpeedCalculator speedCalculator;
 
-    public DownloadEvent() {
+    private int downloadStatus;
+
+    public final static int STATUS_FETCH_START = 0;
+    public final static int STATUS_DOWNLOADING = 1;
+    public final static int STATUS_FETCH_END = 2;
+    public final static int STATUS_DOWNLOAD_COMPLETED = 3;
+    public final static int STATUS_ERROR = 4;
+    public final static int STATUS_DOWNLOAD_CANCEL = 5;
+
+    public int getDownloadStatus() {
+        return downloadStatus;
+    }
+
+    public void setDownloadStatus(int downloadStatus) {
+        this.downloadStatus = downloadStatus;
+    }
+
+    public DownloadEvent(int status) {
+        this.downloadStatus = status;
         this.setWhat(R.id.msg_download_event);
     }
 

@@ -46,11 +46,11 @@ dependencies {
     api 'com.blankj:utilcode:1.23.0'
 
 
-    implementation 'org.greenrobot:eventbus:3.2.0'
+    api 'org.greenrobot:eventbus:3.2.0'
     api "com.orhanobut:hawk:2.0.1"
 
-    implementation 'com.liulishuo.okdownload:okdownload:1.0.7'
-    implementation 'com.liulishuo.okdownload:sqlite:1.0.7'
-    implementation 'com.liulishuo.okdownload:okhttp:1.0.7'
+    api 'com.liulishuo.okdownload:okdownload:1.0.7'
+    api 'com.liulishuo.okdownload:sqlite:1.0.7'
+    api 'com.liulishuo.okdownload:okhttp:1.0.7'
 
 }

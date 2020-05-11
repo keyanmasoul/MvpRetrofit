@@ -74,11 +74,11 @@ public class MainActivity extends BaseActivity implements ICorTaskResult {
     }
 
     private void asyncTest() {
-        new TestCorTask(new TestCorTaskSign(),this).execute();
+        new TestCorTask(new TestCorTaskSign(), this).execute();
     }
 
     private void downloadTest() {
-        DownloadUtil.start(getBaseContext(),"http://media.supercall.xyz/media/10002.mp4",10002);
+        DownloadUtil.start(getBaseContext(), "http://media.supercall.xyz/media/10002.mp4", 10002);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity implements ICorTaskResult {
     protected void receiveTaskResult(CorTaskSign corTaskSign) {
         if (corTaskSign instanceof TestCorTaskSign) {
             TextView textView = findViewById(R.id.tv_text);
-            if (corTaskSign.getTaskStatus() == CorTask.TASK_STATUS_PASS){
+            if (corTaskSign.getTaskStatus() == CorTask.TASK_STATUS_PASS) {
                 textView.setText("asyncTest success!");
             }
         }
@@ -103,7 +103,10 @@ public class MainActivity extends BaseActivity implements ICorTaskResult {
 
     @Override
     public void subHandleDownloadMessage(DownloadEvent event) {
-        Log.e("progress==", event.getCurrentOffset() + "");
+        String downloadStr = "current = " + event.getCurrentOffset() + " speed = " +
+                event.getSpeedCalculator().getInstantBytesPerSecondAndFlush();
+        TextView textView = findViewById(R.id.tv_text);
+        textView.setText(downloadStr);
     }
 
     @Override
