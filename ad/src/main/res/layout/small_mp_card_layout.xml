@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/adv_sdk_bg"
+    android:orientation="vertical"
+    android:paddingBottom="7dp">
+
+    <RelativeLayout
+        android:id="@+id/mopub_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/adv_sdk_install_image"
+            android:layout_width="match_parent"
+            android:layout_height="187dp"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:id="@+id/adv_sdk_corner_img"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:padding="2dp"
+            android:src="@drawable/ad_label" />
+
+        <TextView
+            android:id="@+id/adv_sdk_corner_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#70333333"
+            android:padding="3dp"
+            android:textColor="#ffeeeeee"
+            android:textSize="13sp" />
+
+        <FrameLayout
+            android:id="@+id/adv_sdk_corner_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true">
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/adv_sdk_detail_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/adv_sdk_install_image"
+            android:layout_marginStart="11dp"
+            android:paddingBottom="6dp"
+            android:paddingTop="13dp">
+
+
+            <ImageView
+                android:id="@+id/adv_sdk_install_icon"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:layout_toStartOf="@+id/adv_sdk_install_dl"
+                android:layout_toEndOf="@id/adv_sdk_install_icon"
+                android:gravity="center_vertical"
+                android:minHeight="44dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/adv_sdk_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:singleLine="true"
+                    android:textColor="#212121"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/adv_sdk_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:gravity="start"
+                    android:maxLines="3"
+                    android:text="XXXXXXXXXXX"
+                    android:textColor="#FF747474"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/adv_sdk_install_dl"
+                android:layout_width="70dp"
+                android:layout_height="38dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="13dp"
+                android:background="@drawable/ad_fullscreen_card_dl_bg"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textColor="#fff"
+                android:textSize="11sp" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

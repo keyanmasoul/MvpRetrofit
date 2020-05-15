@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -19,7 +19,7 @@ android {
         buildConfigField "String", "ADMOB_APP_KEY", "\"xxxxxx\""
 
         //用于服务端识别该应用、并做为Header 参数的key
-        buildConfigField "String", "APP_ID", "\"123456\""
+        buildConfigField "String", "APP_ID", "\"10000004\""
         //用于服务端识别该应用、并做为Header 参数的key
         buildConfigField "int", "DECODE_OFFSET", "0"
     }
@@ -44,7 +44,7 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(include: ['*.jar'], dir: 'libs')
     api project(':base')
 
     compileOnly 'com.google.android.gms:play-services-ads:18.3.0'

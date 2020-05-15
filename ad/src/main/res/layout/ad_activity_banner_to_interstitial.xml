@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/root"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="#80666666"
+             android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#3c5899">
+
+            <TextView
+                android:id="@+id/tv_recommend_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="@string/poster_ad_user_recommend"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_close"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="@string/poster_close"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_ad_container"
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

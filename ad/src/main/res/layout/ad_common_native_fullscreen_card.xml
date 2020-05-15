@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d5d5d5"
+    android:paddingStart="12dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="12dp"
+    android:paddingBottom="80dp">
+
+
+    <FrameLayout
+        android:id="@+id/adv_sdk_media_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ad_detail_content_layout"
+        android:layout_alignParentBottom="true">
+
+    </FrameLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/ad_detail_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:paddingBottom="5dp">
+
+        <FrameLayout
+            android:id="@+id/adv_sdk_corner_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/ad_native_middle_bg"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/adv_sdk_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginEnd="20dp"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:includeFontPadding="false"
+                android:textColor="#FF333333"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/adv_sdk_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:maxLines="4"
+                android:textColor="#747474"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:id="@+id/adv_button_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/adv_sdk_close_btn2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ad_hyper_dl_close_bg"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textColor="#FEFEFE"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/adv_sdk_install_dl"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ad_hyper_dl_bg"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textColor="#FEFEFE"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_fb_social_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#FF787878"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/adv_sdk_install_icon"
+            android:layout_width="78dp"
+            android:layout_height="78dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/app_name" />
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/adv_sdk_click_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/adv_sdk_close_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/adv_native_close" />
+
+</RelativeLayout>

@@ -2,7 +2,7 @@ package zjj.work2017;
 
 import java.util.ArrayList;
 
-import corall.base.app.CorManager;
+import corall.ad.AdsModule;
 import corall.base.app.CorApplication;
 import corall.base.app.CorBeanManager;
 import corall.base.app.ModuleConfig;
@@ -10,13 +10,9 @@ import corall.base.app.ModuleConfig;
 public class App extends CorApplication {
     @Override
     protected CorBeanManager createBeanManager() {
-        return null;
+        return new CorBeanManager(this);
     }
 
-    @Override
-    public CorManager getMobManager() {
-        return null;
-    }
 
     @Override
     protected void initContextConfig() throws Exception {
@@ -30,6 +26,13 @@ public class App extends CorApplication {
 
     @Override
     public ArrayList<ModuleConfig> getModulesConfig() {
-        return null;
+        ArrayList<ModuleConfig> list = new ArrayList<>();
+
+        ModuleConfig adModuleConfig = new ModuleConfig(AdsModule.MODULE_KEY,
+                new AdsModule(this, AdsModule.MODULE_KEY));
+        adModuleConfig.setDelay(false);
+        list.add(adModuleConfig);
+
+        return list;
     }
 }

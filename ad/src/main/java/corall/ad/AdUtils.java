@@ -2,6 +2,7 @@ package corall.ad;
 
 import java.io.UnsupportedEncodingException;
 
+import corall.ad.bean.RawAd;
 import corall.base.util.Base64;
 
 public class AdUtils {
@@ -26,5 +27,38 @@ public class AdUtils {
         }
         return result.getBytes("utf-8");
 
+    }
+
+    public static boolean isFaceBook(RawAd ad) {
+        if (ad == null) {
+            return false;
+        }
+        if (ad.getPlatform().equals(AdsContants.AD_PLATFORM_FACEBOOK)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean isMopub(RawAd ad) {
+        if (ad == null) {
+            return false;
+        }
+        if (ad.getPlatform().equals(AdsContants.AD_PLATFORM_MOPUB)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isAdmob(RawAd ad) {
+        if (ad == null) {
+            return false;
+        }
+        if (ad.getPlatform().equals(AdsContants.AD_PLATFORM_ADMOB) /**|| ad.getPlatform().equals(AdsContants.AD_PLATFORM_ADMOB_NEW)**/) {
+            return true;
+        }
+
+
+        return false;
     }
 }

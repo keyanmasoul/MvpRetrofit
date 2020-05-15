@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ad_native_layout_bg"
+    android:orientation="vertical"
+    android:padding="3dp">
+
+    <FrameLayout
+        android:id="@+id/conner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ad_label" />
+
+        <TextView
+            android:id="@+id/adv_sdk_corner_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sponsor"
+            android:textColor="#FF747474"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/adv_sdk_corner_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="3dp"
+            android:layout_gravity="end" />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp">
+
+        <ImageView
+            android:id="@+id/adv_sdk_install_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/adv_sdk_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/adv_sdk_install_icon"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:textColor="#FF212121"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/adv_sdk_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/adv_sdk_title"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toEndOf="@+id/adv_sdk_install_icon"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:gravity="start|center_vertical"
+            android:maxLines="3"
+            android:minLines="2"
+            android:textColor="#FF747474"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/adv_sdk_media_container"
+        android:layout_width="match_parent"
+        android:layout_height="187dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="6dp" />
+
+    <TextView
+        android:id="@+id/adv_sdk_install_dl"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/selector_common_btn_bg"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/adv_sdk_detail_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="12dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="12dp">
+
+    </RelativeLayout>
+</LinearLayout>

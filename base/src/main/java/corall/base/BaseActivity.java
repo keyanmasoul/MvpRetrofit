@@ -36,6 +36,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import cor.base.R;
+import corall.base.bean.AdEvent;
 import corall.base.bean.DownloadEvent;
 import corall.base.bean.MessageEvent;
 import corall.base.bean.TaskEvent;
@@ -281,9 +282,12 @@ abstract public class BaseActivity extends AppCompatActivity {
     public void handleMessage(MessageEvent messageEvent) {
         if (messageEvent instanceof DownloadEvent) {
             subHandleDownloadMessage((DownloadEvent) messageEvent);
-        } else if (messageEvent instanceof TaskEvent){
+        } else if (messageEvent instanceof TaskEvent) {
             receiveTaskResult(((TaskEvent) messageEvent).getCorTaskSign());
-        }else {
+        } else if (messageEvent instanceof AdEvent) {
+            AdEvent event = (AdEvent) messageEvent;
+            receiveAdEvent(event.getWhat(), (String) event.getObject());
+        } else {
             subHandleMessage(messageEvent);
         }
     }
@@ -295,6 +299,8 @@ abstract public class BaseActivity extends AppCompatActivity {
     abstract protected void subHandleMessage(MessageEvent messageEvent);
 
     abstract protected void receiveTaskResult(CorTaskSign corTaskSign);
+
+    abstract protected void receiveAdEvent(int eventId, String name);
 
     protected void startActivityAnim(Class pointClass) {
         Intent intent = new Intent(this, pointClass);

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/adv_sdk_bg"
+    android:orientation="vertical"
+    android:paddingBottom="9dp">
+
+    <FrameLayout
+        android:id="@+id/adv_sdk_corner_container"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/adv_sdk_detail_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:paddingTop="13dp"
+        android:paddingBottom="8dp">
+
+
+        <ImageView
+            android:id="@+id/adv_sdk_install_icon"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:layout_toStartOf="@+id/adv_sdk_install_dl"
+            android:layout_toEndOf="@id/adv_sdk_install_icon"
+            android:gravity="center_vertical"
+            android:minHeight="42dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/adv_sdk_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:singleLine="true"
+                android:textColor="#FF212121"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/adv_sdk_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif"
+                android:gravity="start"
+                android:maxLines="3"
+                android:textColor="#FF747474"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/adv_sdk_install_dl"
+            android:layout_width="70dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/ad_fullscreen_card_dl_bg"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

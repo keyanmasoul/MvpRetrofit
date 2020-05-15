@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/ad_native_out_layout_bg"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/conner_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sponsor"
+                android:textColor="#FF747474"
+                android:textSize="13sp" />
+
+            <FrameLayout
+                android:id="@+id/adv_sdk_corner_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/adv_sdk_media_container"
+            android:layout_width="match_parent"
+            android:layout_height="187dp"
+            android:layout_below="@+id/conner_layout">
+
+            <ImageView
+                android:id="@+id/adv_sdk_install_image"
+                android:layout_width="match_parent"
+                android:layout_height="187dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY" />
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/conner_layout"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ad_label" />
+
+        <RelativeLayout
+            android:id="@+id/adv_sdk_detail_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/adv_sdk_media_container"
+            android:layout_marginStart="11dp"
+            android:paddingTop="6dp">
+
+            <ImageView
+                android:id="@+id/adv_sdk_install_icon"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toStartOf="@+id/adv_sdk_install_dl"
+                android:layout_toEndOf="@id/adv_sdk_install_icon"
+                android:gravity="center_vertical"
+                android:minHeight="42dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/adv_sdk_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:singleLine="true"
+                    android:textColor="#FF212121"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/adv_sdk_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:textColor="#FF747474"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/adv_sdk_install_dl"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="10dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="download"
+                android:background="@drawable/ad_native_out_btn_bg"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textColor="#30a0fb"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

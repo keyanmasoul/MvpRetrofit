@@ -1,0 +1,155 @@
+{
+	"code": "200",
+	"result": {
+	    "blockable":"false",
+		"hmads": [{
+				"placeid": "600002",
+				"ads": [{
+						"platform": "fb",
+						"type": "native",
+						"id": "2333399496944879_2339019523049543"
+					},
+					{
+                    	"type": "interstitial",
+                    	"platform": "direct",
+                    	"id": "6000021",
+                    	"jumpout":"true",
+                    	"url":"http://www.baidu.com"
+                    },
+					{
+                    	"type": "banner",
+                    	"platform": "direct",
+                    	"id": "6000021",
+                    	"action":"com.studio.empire.defense.newtab",
+                    	"url":"https://www.lenzmxs.com/"
+                    },
+					{
+                    	"type": "native",
+                    	"platform": "mp",
+                    	"id": "c949d87874c44c3da723cf1560daaaa7"
+                    },
+					{
+						"platform": "am",
+						"type": "banner",
+						"size": "MEDIUM_RECTANGLE",
+						"id": "/6499/example/banner"
+					},
+					{
+						"platform": "mp",
+						"type": "banner",
+						"size": "MEDIUM_RECTANGLE",
+						"id": "0ca45c285e3940ea9aa62c3140464127"
+					},
+					{
+						"platform": "fb",
+						"type": "banner",
+						"size": "BANNER_HEIGHT_50",
+						"id": "IMG_16_9_APP_INSTALL"
+					},
+					{
+					    "platform":"direct",
+					    "id":"123",
+					    "type":"native",
+					    "icon":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577432368&di=8a32c5346f5c066fa4f3d6704c44b630&imgtype=jpg&er=1&src=http%3A%2F%2Fdl.glitter-graphics.net%2Fpub%2F50%2F50051scz2x1qbxk.jpg",
+					    "title":"Test",
+					    "desc":"Test",
+					    "pkg":"com.facebook.katana"
+					},
+					{
+						"platform": "am",
+						"type": "native",
+						"id": "ca-app-pub-3940256099942544/2247696110"
+					},
+					{
+						"platform": "am",
+						"type": "reward",
+						"id": "159857"
+					},
+					{
+						"platform": "am_new",
+						"type": "native",
+						"id": "/6499/example/native"
+					},
+					{
+						"platform": "am",
+						"type": "interstitial",
+						"id": "/6499/example/interstitial"
+					},
+					{
+						"platform": "web",
+						"type": "interstitial",
+						"id": "112345",
+						"url":"http://hi.douyougame.com/?pubid=1QX6OAWG"
+					}
+				],
+				"actions": "button",
+				"type": "union",
+				"nationlist":"cn,us,gb,ge,au",
+				"frozen": 5.5
+			},
+			{
+				"placeid": "600003",
+				"type": "auto_click",
+				"ads": [{
+					"platform": "latent",
+					"id": "2001"
+				}]
+			},
+			{
+				"placeid": "600005",
+				"type": "union",
+				"ads": [{
+                       "platform": "fb",
+                       "type": "reward",
+                       "id": "357813988483830_357857131812849"
+                }]
+			},
+			{
+            	"placeid": "600006",
+            	"type": "union",
+            	"ads": [{
+                    "platform": "fb",
+                    "type": "interstitial",
+                     "id": "357813988483830_372243707040858"
+                }],
+                "req_limit_info": {
+                    "organic": 5,
+                    "other": 5,
+                    "fluid": 5
+                }
+            },
+			{
+				"placeid": "600004",
+				"type": "union",
+				"adgroup": [{
+					"ads": [{
+						"platform": "fb",
+						"type": "native",
+						"id": "VID_HD_16_9_15S_LINK#768907436774430_770530893278751"
+					}, {
+						"platform": "da",
+						"type": "native",
+						"id": "159857"
+					}],
+					"chance": "10",
+					"frozen": "1"
+				}, {
+					"ads": [{
+						"platform": "fb",
+						"type": "native",
+						"id": "VID_HD_16_9_15S_LINK#768907436774430_770530893278751"
+					}, {
+						"platform": "am_new",
+						"type": "banner",
+						"size": "MEDIUM_RECTANGLE",
+						"id": "/6499/example/banner"
+					}],
+
+					"chance": "10",
+					"frozen": "2"
+				}]
+			}
+		]
+	},
+	"msg": "ok"
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+消息ID资源
+所有消息ID定义在res下的msg_idx.xml文件下，命名规则为msg_(modual名称)_(后缀名称)，并在其上一行添加注释
+ -->
+<resources>
+
+    <!-- 广告聚合sdk初始化完成 -->
+    <item name="poster_msg_ad_sdk_init_finish" type="id" />
+    <!--触发应用外广告-->
+    <item name="poster_msg_ad_engine_outer_ad" type="id" />
+    <!--准备应用外广告-->
+    <item name="poster_msg_ad_prepare_outer_ad" type="id" />
+    <!--应用安装与卸载场景广告信息-->
+    <item name="poster_msg_ad_smart_monitor_app_info" type="id" />
+
+    <!-- AD 打点 -->
+    <item name="poster_msg_ad_record" type="id" />
+    <!-- FUNC 打点 -->
+    <item name="poster_msg_func_record" type="id" />
+
+    <!-- 应用内插瓶页-->
+    <item name="poster_msg_ad_interstitial_loaded" type="id" />
+    <item name="poster_msg_ad_interstitial_show" type="id" />
+    <item name="poster_msg_ad_interstitial_closed" type="id" />
+    <item name="poster_msg_ad_interstitial_failed" type="id" />
+
+    <!--wifi设备列表广告加载成功-->
+    <item name="poster_msg_ad_trigger_time_out" type="id" />
+
+    <!--wifi设备列表广告加载失败-->
+
+
+    <item name="poster_msg_ad_show_app_outer_activity" type="id" />
+    <item name="poster_msg_ad_close_app_outer_activity" type="id" />
+
+    <item name="poster_msg_need_load_ad_weather_close" type="id" />
+    <item name="poster_msg_need_load_ad_swipe_close" type="id" />
+
+
+    <item name="poster_msg_ad_background_already_show" type="id" />
+    <item name="poster_msg_ad_background_wait_out_time" type="id" />
+    <item name="poster_msg_ad_charging_refresh_ad" type="id" />
+
+    <item name="poster_msg_ad_common_scene_loaded" type="id" />
+    <item name="poster_msg_ad_common_scene_click" type="id" />
+    <!--    <item name="poster_msg_hide_icon" type="id" />-->
+    <item name="poster_msg_post_logs" type="id" />
+
+    <item name="msg_app_measure_channel" type="id" />
+
+
+    <item name="msg_period_ready" type="id" />
+
+    <item name="msg_ad_game_load_out_time" type="id" />
+    <item name="msg_ad_reward_load_out_time" type="id" />
+    <item name="msg_ad_game_play" type="id" />
+    <item name="msg_ad_game_reward" type="id" />
+    <item name="msg_ad_game_spinning" type="id" />
+    <item name="msg_ad_unlock_video_show_loaded" type="id" />
+    <item name="msg_ad_unlock_video_show_reward" type="id" />
+    <item name="msg_ad_unlock_video_show_close" type="id" />
+
+    <item name="msg_check_wallpaper_gift_notify" type="id" />
+    <item name="msg_ad_always_reload" type="id" />
+</resources>

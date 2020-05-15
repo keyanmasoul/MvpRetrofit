@@ -28,7 +28,7 @@ import io.reactivex.disposables.Disposable;
  * 全局应用环境抽象类
  * <p/>
  */
-public abstract class CorApplication<B extends CorBeanManager, D extends CorManager> extends Application {
+public abstract class CorApplication<B extends CorBeanManager> extends Application {
 
     public static final String TAG = CorApplication.class.getSimpleName();
 
@@ -312,11 +312,6 @@ public abstract class CorApplication<B extends CorBeanManager, D extends CorMana
     protected abstract B createBeanManager();
 
 
-    /**
-     * 初始化管理类
-     */
-    public abstract D getMobManager();
-
 
     /**
      * 处理基础数据的初始化
@@ -340,17 +335,17 @@ public abstract class CorApplication<B extends CorBeanManager, D extends CorMana
     public abstract ArrayList<ModuleConfig> getModulesConfig();
 
 
-    protected void sendEmptyMessage(int what, long delay) {
+    public void sendEmptyMessage(int what, long delay) {
         MessageEvent event = new MessageEvent();
         event.setWhat(what);
         EventBus.getDefault().post(event);
     }
 
-    protected void sendMessage(MessageEvent messageEvent) {
+    public void sendMessage(MessageEvent messageEvent) {
         EventBus.getDefault().post(messageEvent);
     }
 
-    protected void sendMessageDelay(final MessageEvent messageEvent, long delay) {
+    public void sendMessageDelay(final MessageEvent messageEvent, long delay) {
         Observable.timer(delay, TimeUnit.MILLISECONDS).subscribe(new Observer<Long>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -374,7 +369,7 @@ public abstract class CorApplication<B extends CorBeanManager, D extends CorMana
         });
     }
 
-    protected void sendEmptyMessageDelay(final int what, long delay) {
+    public void sendEmptyMessageDelay(final int what, long delay) {
         Observable.timer(delay, TimeUnit.MILLISECONDS).subscribe(new Observer<Long>() {
             @Override
             public void onSubscribe(Disposable d) {

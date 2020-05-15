@@ -14,7 +14,6 @@ import com.mopub.common.MoPub;
 import com.mopub.common.SdkConfiguration;
 import com.mopub.common.SdkInitializationListener;
 import com.mopub.common.logging.MoPubLog;
-import com.orhanobut.hawk.Hawk;
 
 import java.net.NetworkInterface;
 import java.util.Collections;
@@ -24,21 +23,18 @@ import java.util.List;
 import corall.ad.bean.CorAdPlace;
 import corall.ad.bean.CorAdUnionPlace;
 import corall.ad.cache.AdsConfigCache;
-import corall.base.task.CorTask;
-import corall.base.app.CorApplication;
+import corall.ad.task.LoadAdTask;
 import corall.base.app.AModule;
-import corall.base.util.AppInfoUtil;
-import corall.base.util.Des3Util;
-import corall.base.util.KeyUtil;
-import corall.base.util.StringUtil;
-import corall.base.util.Utils;
+import corall.base.app.CorApplication;
+import corall.base.task.CorTask;
+import corall.base.task.ICorTaskResult;
 
 /**
  * 广告主模块
  * Created by ChenLi on 2017/11/20.
  */
 
-public class AdsModule extends AModule {
+public class AdsModule extends AModule implements ICorTaskResult {
 
     public static final String MODULE_KEY = "spring_md";
 
@@ -119,7 +115,7 @@ public class AdsModule extends AModule {
     protected void doInitModule() throws Exception {
         checkVpn();
         checkEmulator();
-        new LoadAdTask().execute();
+        new LoadAdTask(this, this).execute();
     }
 
     public static void checkVpn() {
@@ -370,78 +366,16 @@ public class AdsModule extends AModule {
         }
     }
 
-    class LoadAdTask extends CorTask {
 
-        @Override
-        protected Object call(Object[] objects) {
-            try {
-                String localAdConfig = Hawk.get(KeyUtil.getKey(R.string.ads_config_pref), "");
-                if (StringUtil.isEmptyString(localAdConfig)) {
-                    //SharedPref没有广告配置，从assets里获取原始配置
-                    localAdConfig = getAssetsAdConfig();
-                    if (StringUtil.isEmptyString(localAdConfig)) {
-                        return null;
-                    }
-                }
-                return analyzeAdConfig(localAdConfig);
-            } catch (Exception e) {
-                return null;
-            }
-        }
+    @Override
+    public void onError(String errorMessage) {
 
-        @Override
-        protected void onComplete() {
-            super.onComplete();
-        }
-
-        private String getAssetsAdConfig() {
-            CorApplication aMApplication = CorApplication.getInstance();
-            String localAdConfig = Utils.getAssetsFileContent(aMApplication, AdsContants.ASSETS_AD_CONFIG_PATH + BuildConfig.APP_ID);
-            if (TextUtils.isEmpty(localAdConfig)) {
-                localAdConfig = Utils.getAssetsFileContent(aMApplication, AdsContants.ASSETS_AD_CONFIG_PATH + "default");
-            }
-            if (!StringUtil.isEmptyString(localAdConfig)) {
-                Hawk.put(KeyUtil.getKey(R.string.ads_config_pref), localAdConfig);
-                return localAdConfig;
-            }
-            return null;
-        }
-
-        private List<CorAdPlace> analyzeAdConfig(String localAdConfig) throws Exception {
-            try {
-                String decryptAdConfig = decrypt3DES(localAdConfig);
-                byte[] result = AdUtils.getDecodedConfig(decryptAdConfig, BuildConfig.DECODE_OFFSET);
-                return parseAdsConfig(result);
-            } catch (Exception e) {
-                //decode error ,use original data
-                byte[] result = new byte[0];
-                if (localAdConfig != null) {
-                    result = localAdConfig.getBytes("utf-8");
-                }
-                return parseAdsConfig(result);
-            }
-        }
-
-        private String decrypt3DES(String localAdConfig) {
-            String decryptAdConfig = "";
-            try {
-                String sha1SingInfo = AppInfoUtil.getSha1SingInfo(CorApplication.getInstance());
-                decryptAdConfig = Des3Util.decrypt(localAdConfig, sha1SingInfo);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return decryptAdConfig;
-        }
-
-        private List<CorAdPlace> parseAdsConfig(byte[] result) {
-            CorAdHandler mHandler = new CorAdHandler();
-            if (isTesting()) {
-                mHandler.setTest();
-            }
-            mHandler.parserJson(result);
-            getAdsConfigCache().setBlockable(mHandler.isBlockable());
-            return mHandler.getAdsList();
-        }
     }
 
+    @Override
+    public void onComplete(int taskStatus) {
+        if (taskStatus == CorTask.TASK_STATUS_PASS) {
+
+        }
+    }
 }
