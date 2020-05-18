@@ -10,8 +10,8 @@ import corall.base.app.CorApplication;
  */
 public class FuncExecutor extends AStrategyExecutor {
 
-    public FuncExecutor(CorApplication context, AdsModule adModule, String adScene) {
-        super(context, adModule, adScene);
+    public FuncExecutor(CorApplication context, String adScene) {
+        super(context, adScene);
     }
 
     @Override

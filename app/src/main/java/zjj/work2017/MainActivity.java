@@ -102,6 +102,11 @@ public class MainActivity extends BaseActivity implements ICorTaskResult {
     }
 
     @Override
+    protected void receiveAdEvent(int eventId, String name) {
+        
+    }
+
+    @Override
     public void subHandleDownloadMessage(DownloadEvent event) {
         String downloadStr = "current = " + event.getCurrentOffset() + " speed = " +
                 event.getSpeedCalculator().getInstantBytesPerSecondAndFlush();

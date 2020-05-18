@@ -2,7 +2,6 @@ package corall.adscene.scene.inner;
 
 
 import android.app.Activity;
-import android.os.Message;
 
 import com.example.adscene.R;
 
@@ -13,6 +12,7 @@ import corall.ad.ui.window.RawNativeFullScreenAdWindow;
 import corall.adscene.AdType;
 import corall.adscene.EntranceType;
 import corall.adscene.scene.AdReportScene;
+import corall.adscene.strategy.ADStrategyManager;
 import corall.adscene.strategy.IStrategyExecutor;
 import corall.base.app.CorApplication;
 import corall.base.bean.AdEvent;
@@ -75,12 +75,12 @@ public class UnlockVideoRewardScene extends AdReportScene {
 
     @Override
     public boolean load(boolean forceLoad) {
-        CorAdUnionPlace adUnionPlace = AdvSDK.getInstance().getUnionAd(mEntranceType.getPid());
+        CorAdUnionPlace adUnionPlace = getADModule().getUnionAd(mEntranceType.getPid());
         if (adUnionPlace == null) {
             return false;
         }
         mHmAdPlace = adUnionPlace;
-        mExecutor = getADModule().getADStrategyManager().getExecutorByEntranceType(mEntranceType);
+        mExecutor = ADStrategyManager.getExecutorByEntranceType(mEntranceType);
         return (forceLoad || mExecutor.check(adUnionPlace)) && loadUnionPlace(adUnionPlace);
 
     }
@@ -95,7 +95,10 @@ public class UnlockVideoRewardScene extends AdReportScene {
         switch (type) {
             case AM_REWARD:
             case AM_NEW_REWARD:
-                imContext.handleMobEmptyMessage(R.id.msg_ad_unlock_video_show_loaded);
+
+                final AdEvent message = new AdEvent();
+                message.setWhat(R.id.msg_ad_unlock_video_show_loaded);
+                imContext.sendMessage(message);
                 break;
             default:
                 break;
@@ -118,7 +121,9 @@ public class UnlockVideoRewardScene extends AdReportScene {
     @Override
     protected void onRewarded() {
         super.onRewarded();
-        imContext.handleMobEmptyMessage(R.id.msg_ad_unlock_video_show_reward);
+        final AdEvent message = new AdEvent();
+        message.setWhat(R.id.msg_ad_unlock_video_show_reward);
+        imContext.sendMessage(message);
     }
 
     @Override

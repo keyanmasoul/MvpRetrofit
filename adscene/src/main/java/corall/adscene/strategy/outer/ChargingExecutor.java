@@ -16,8 +16,8 @@ import corall.base.app.CorApplication;
 
 public class ChargingExecutor extends OuterAdExecutor {
 
-    public ChargingExecutor(CorApplication context, AdsModule adModule, String adScene) {
-        super(context, adModule, adScene);
+    public ChargingExecutor(CorApplication context, String adScene) {
+        super(context, adScene);
     }
 
     @Override

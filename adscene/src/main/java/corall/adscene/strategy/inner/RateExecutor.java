@@ -8,8 +8,8 @@ import corall.base.app.CorApplication;
  */
 public class RateExecutor extends FuncExecutor {
 
-    public RateExecutor(CorApplication context, AdsModule adModule, String adScene) {
-        super(context, adModule, adScene);
+    public RateExecutor(CorApplication context, String adScene) {
+        super(context, adScene);
     }
 
     @Override

@@ -5,8 +5,8 @@ import corall.base.app.CorApplication;
 
 public abstract class AdExecutor extends AStrategyExecutor {
 
-    public AdExecutor(CorApplication context, AdsModule adModule, String adScene) {
-        super(context, adModule, adScene);
+    public AdExecutor(CorApplication context, String adScene) {
+        super(context, adScene);
     }
 
     @Override

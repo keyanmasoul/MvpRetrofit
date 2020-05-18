@@ -1,2 +1,37 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.adscene" />
+    package="com.example.adscene">
+
+    <application>
+        <activity
+            android:name="corall.activity.NativeAdActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:icon="@drawable/transparent"
+            android:label=""
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:taskAffinity="corall.task.e"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+
+        <activity
+            android:name="corall.activity.BannerAdsActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:icon="@drawable/transparent"
+            android:label=""
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:taskAffinity="corall.task.e"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+
+        <activity
+            android:name="corall.activity.WebAdActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:icon="@drawable/transparent"
+            android:label=""
+            android:launchMode="singleInstance"
+            android:taskAffinity="com.adc.ad.bqe.Ad"
+            android:theme="@android:style/Theme.Translucent" />
+    </application>
+</manifest>

@@ -9,13 +9,8 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import com.example.adscene.R;
-import com.uber.adsbuisiness.bean.HmAdPlace;
-import com.uber.adsbuisiness.bean.HmAdUnionPlace;
-import com.uber.adsbuisiness.bean.RawAd;
-import com.uber.adsbuisiness.bean.nativead.RawNativeAd;
-import com.uber.adsbuisiness.service.AdActionException;
-import com.uber.adsui.card.AdCardEventListener;
-import com.uber.adsui.card.CommonNativeAdCardView;
+
+import org.apache.commons.lang3.ClassUtils;
 
 import corall.ad.bean.CorAdPlace;
 import corall.ad.bean.CorAdUnionPlace;
@@ -28,13 +23,6 @@ import corall.adscene.EntranceType;
 import corall.adscene.scene.AdStrategyScene;
 import corall.adscene.scene.inner.CommonInterstitialScene;
 import corall.adscene.scene.outer.CommonInterstitialOutScene;
-import cr.s.a.ClassUtils;
-import cr.s.a.EntranceType;
-import cr.s.a.R;
-import cr.s.a.adscene.AdStrategyScene;
-import cr.s.a.adscene.inner.CommonInterstitialScene;
-import cr.s.a.adscene.outer.CommonInterstitialOutScene;
-import cr.s.a.ui.crad.view.ViViFullScreenNativeCard;
 
 /**
  * desc: 模拟 插屏广告（将native广告以插屏的形式展示）
@@ -44,7 +32,7 @@ import cr.s.a.ui.crad.view.ViViFullScreenNativeCard;
 public class NativeAdActivity extends InterstitialActivity {
 
     public static void showInterstitialAd(Context context, String entranceType) {
-        Intent intent = new Intent(context, ClassUtils.getNativeAdActivity());
+        Intent intent = new Intent(context, NativeAdActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(ENTRANCE_TYPE, entranceType);
         context.startActivity(intent);

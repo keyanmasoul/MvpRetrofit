@@ -4,14 +4,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-import com.uber.android.mob.AMApplication;
-
-import corall.ad.bean.CorAdUnionPlace;
 import corall.adscene.AdType;
 import corall.adscene.EntranceType;
 import corall.base.app.CorApplication;
-import cr.s.a.AdType;
-import cr.s.a.EntranceType;
 
 /**
  * desc: 应用外广告 管理

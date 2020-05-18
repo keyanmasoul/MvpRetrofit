@@ -286,7 +286,7 @@ abstract public class BaseActivity extends AppCompatActivity {
             receiveTaskResult(((TaskEvent) messageEvent).getCorTaskSign());
         } else if (messageEvent instanceof AdEvent) {
             AdEvent event = (AdEvent) messageEvent;
-            receiveAdEvent(event.getWhat(), (String) event.getObject());
+            receiveAdEvent(event.getWhat(), event.getObject() == null ? null : (String) event.getObject());
         } else {
             subHandleMessage(messageEvent);
         }

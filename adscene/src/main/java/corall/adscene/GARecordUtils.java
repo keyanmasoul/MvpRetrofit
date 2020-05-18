@@ -1,18 +1,11 @@
 package corall.adscene;
 
-import android.os.Message;
-
 import androidx.annotation.StringRes;
 
 import com.example.adscene.R;
-import com.uber.android.mob.AMApplication;
-import com.uber.android.mob.util.StringUtil;
 
 import corall.base.app.CorApplication;
 import corall.base.util.StringUtil;
-import cr.s.a.ADGAConstant;
-import cr.s.a.R;
-import cr.s.a.bean.AdGARecord;
 
 public class GARecordUtils {
 
@@ -40,7 +33,7 @@ public class GARecordUtils {
      * @param adSceneName
      */
     public static void onADLoadByActivity(CorApplication imContext, AdType type, String adSceneName) {
-        reportAd(imContext, ADGAConstant.C_AD, ADGAConstant.A_REQUEST, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_load_activity, type.getName(), adSceneName));
+//        reportAd(imContext, ADGAConstant.C_AD, ADGAConstant.A_REQUEST, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_load_activity, type.getName(), adSceneName));
     }
 
     /**
@@ -51,12 +44,12 @@ public class GARecordUtils {
      * @param adSceneName
      */
     public static void onADLoadBlock(CorApplication imContext, AdType type, String adSceneName, int error) {
-        reportAd(imContext, ADGAConstant.C_AD, ADGAConstant.A_FAIL, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_block, type.getName(), adSceneName) + "_(" + error + ")");
+//        reportAd(imContext, ADGAConstant.C_AD, ADGAConstant.A_FAIL, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_block, type.getName(), adSceneName) + "_(" + error + ")");
     }
 
 
     public static void onADFilledEffective(CorApplication imContext, String categoryId, String adSceneName) {
-        reportAd(imContext, categoryId, ADGAConstant.A_FILL, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_filled_effective, ADGAConstant.PREFIX_AD, adSceneName));
+//        reportAd(imContext, categoryId, ADGAConstant.A_FILL, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_filled_effective, ADGAConstant.PREFIX_AD, adSceneName));
     }
     /**
      * 不计算广告平台及类型的展示
@@ -65,7 +58,7 @@ public class GARecordUtils {
      * @param adSceneName
      */
     public static void onADShowEffective(CorApplication imContext, String categoryId, String adSceneName) {
-        reportAd(imContext, categoryId, ADGAConstant.A_SHOW, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_show_effective, ADGAConstant.PREFIX_AD, adSceneName));
+//        reportAd(imContext, categoryId, ADGAConstant.A_SHOW, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_show_effective, ADGAConstant.PREFIX_AD, adSceneName));
     }
 
     /**
@@ -77,9 +70,9 @@ public class GARecordUtils {
      */
     public static void onADRequestEffective(CorApplication imContext, String categoryId, String adSceneName, int groupIndex) {
         if (groupIndex == ADConstant.INVALID_ID) {
-            reportAd(imContext, categoryId, ADGAConstant.A_REQUEST, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_load_effective, ADGAConstant.PREFIX_AD, adSceneName));
+//            reportAd(imContext, categoryId, ADGAConstant.A_REQUEST, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_load_effective, ADGAConstant.PREFIX_AD, adSceneName));
         } else {
-            reportAd(imContext, categoryId, ADGAConstant.A_REQUEST, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_load_effective, ADGAConstant.PREFIX_AD, adSceneName) + "_(" + groupIndex + ")");
+//            reportAd(imContext, categoryId, ADGAConstant.A_REQUEST, StringUtil.decodeStringRes(imContext, R.string.poster_record_ad_on_load_effective, ADGAConstant.PREFIX_AD, adSceneName) + "_(" + groupIndex + ")");
         }
     }
 
@@ -87,23 +80,23 @@ public class GARecordUtils {
      * 以下是 广告的 请求、填充、展示、点击、失败
      */
     public static void onADLoad(CorApplication imContext, String categoryId, AdType type, String adSceneName, int code) {
-        reportAd(imContext, categoryId, ADGAConstant.A_REQUEST, R.string.poster_record_ad_on_load, ADGAConstant.PREFIX_AD, type, adSceneName, code);
+//        reportAd(imContext, categoryId, ADGAConstant.A_REQUEST, R.string.poster_record_ad_on_load, ADGAConstant.PREFIX_AD, type, adSceneName, code);
     }
 
     public static void onADFilled(CorApplication imContext, String categoryId, AdType type, String adSceneName) {
-        reportAd(imContext, categoryId, ADGAConstant.A_FILL, R.string.poster_record_ad_on_filled, ADGAConstant.PREFIX_AD, type, adSceneName);
+//        reportAd(imContext, categoryId, ADGAConstant.A_FILL, R.string.poster_record_ad_on_filled, ADGAConstant.PREFIX_AD, type, adSceneName);
     }
 
     public static void onADShow(CorApplication imContext, String categoryId, AdType type, String adSceneName) {
-        reportAd(imContext, categoryId, ADGAConstant.A_SHOW, R.string.poster_record_ad_on_show, ADGAConstant.PREFIX_AD, type, adSceneName);
+//        reportAd(imContext, categoryId, ADGAConstant.A_SHOW, R.string.poster_record_ad_on_show, ADGAConstant.PREFIX_AD, type, adSceneName);
     }
 
     public static void onADClick(CorApplication imContext, String categoryId, AdType type, String adSceneName) {
-        reportAd(imContext, categoryId, ADGAConstant.A_CLICK, R.string.poster_record_ad_on_click, ADGAConstant.PREFIX_AD, type, adSceneName);
+//        reportAd(imContext, categoryId, ADGAConstant.A_CLICK, R.string.poster_record_ad_on_click, ADGAConstant.PREFIX_AD, type, adSceneName);
     }
 
     public static void onADFail(CorApplication imContext, String categoryId, AdType type, String adSceneName, int code) {
-        reportAd(imContext, categoryId, ADGAConstant.A_FAIL, R.string.poster_record_ad_on_fail, ADGAConstant.PREFIX_AD, type, adSceneName, code);
+//        reportAd(imContext, categoryId, ADGAConstant.A_FAIL, R.string.poster_record_ad_on_fail, ADGAConstant.PREFIX_AD, type, adSceneName, code);
     }
 
     /**

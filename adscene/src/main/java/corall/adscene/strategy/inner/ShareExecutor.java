@@ -7,8 +7,8 @@ import corall.base.app.CorApplication;
 
 public class ShareExecutor extends FuncExecutor {
 
-    public ShareExecutor(CorApplication context, AdsModule adModule, String adScene) {
-        super(context, adModule, adScene);
+    public ShareExecutor(CorApplication context, String adScene) {
+        super(context, adScene);
     }
 
     @Override

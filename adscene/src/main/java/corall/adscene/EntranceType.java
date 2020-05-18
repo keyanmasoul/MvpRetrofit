@@ -14,8 +14,6 @@ import corall.adscene.scene.inner.CommonInterstitialScene;
 import corall.adscene.scene.inner.CommonScene;
 import corall.adscene.scene.inner.UnlockVideoRewardScene;
 import corall.adscene.scene.outer.AppOuterDeferScene;
-import corall.adscene.scene.outer.AutoClickScene;
-import corall.adscene.scene.outer.BackgroundScene;
 import corall.adscene.scene.outer.CommonInterstitialOutScene;
 import corall.base.app.CorApplication;
 
@@ -24,7 +22,6 @@ import static corall.adscene.ADConstant.HMPlaceId.APP_INSTALL_UNION_ID;
 import static corall.adscene.ADConstant.HMPlaceId.APP_OUTER_AD_UNION_ID_1;
 import static corall.adscene.ADConstant.HMPlaceId.APP_UNINSTALL_DEFER_UNION_ID;
 import static corall.adscene.ADConstant.HMPlaceId.APP_UNINSTALL_UNION_ID;
-import static corall.adscene.ADConstant.HMPlaceId.AUTO_CLICK_ID;
 import static corall.adscene.ADConstant.HMPlaceId.BACK_HOME_ID;
 import static corall.adscene.ADConstant.HMPlaceId.CHARGING_SCREEN_UNION_ID;
 import static corall.adscene.ADConstant.HMPlaceId.DOWNLOADED_UNION_ID;
@@ -36,21 +33,15 @@ import static corall.adscene.ADConstant.HMPlaceId.FUNC_GIFT_ID;
 import static corall.adscene.ADConstant.HMPlaceId.FUNC_GIFT_NOTIFY_ID;
 import static corall.adscene.ADConstant.HMPlaceId.FUNC_RATE_ID;
 import static corall.adscene.ADConstant.HMPlaceId.FUNC_SHARE_ID;
-import static corall.adscene.ADConstant.HMPlaceId.FUNC_SHORTCUT_ID;
-import static corall.adscene.ADConstant.HMPlaceId.FUNC_SWIPE_ANDROID_0_ID;
 import static corall.adscene.ADConstant.HMPlaceId.FUNC_SWIPE_ID;
 import static corall.adscene.ADConstant.HMPlaceId.FUNC_WEATHER_ID;
 import static corall.adscene.ADConstant.HMPlaceId.GAME_PLAY_UNION_ID;
 import static corall.adscene.ADConstant.HMPlaceId.LEFT_SWIPE_WEB_UNION_ID;
-import static corall.adscene.ADConstant.HMPlaceId.MOVIE_BOX_UNION_ID;
 import static corall.adscene.ADConstant.HMPlaceId.PLAY_VIDEO_PAGE_ID;
-import static corall.adscene.ADConstant.HMPlaceId.PLAY_VIDEO_UNION_ID;
-import static corall.adscene.ADConstant.HMPlaceId.ROULETTE_UNION_ID;
 import static corall.adscene.ADConstant.HMPlaceId.SITES_LIST_2_UNION_ID;
 import static corall.adscene.ADConstant.HMPlaceId.SITES_LIST_UNION_ID;
 import static corall.adscene.ADConstant.HMPlaceId.SNIFF_GUIDE_UNION_ID;
 import static corall.adscene.ADConstant.HMPlaceId.SNIFF_UNION_ID;
-import static corall.adscene.ADConstant.HMPlaceId.SPINNING_REWARD_ID;
 import static corall.adscene.ADConstant.HMPlaceId.SPLASH_UNION_ID;
 import static corall.adscene.ADConstant.HMPlaceId.SWIPE_CLOSE_UNION_ID;
 import static corall.adscene.ADConstant.HMPlaceId.SWIPE_WEB_UNION_ID1;
@@ -214,14 +205,10 @@ public enum EntranceType {
     /**
      * 应用外广告
      */
-    APP_OUTER_AD("app_outer", CommonInterstitialOutScene.class, APP_OUTER_AD_UNION_ID_1, Category.C),
+    APP_OUTER_AD("app_outer", CommonInterstitialOutScene.class, APP_OUTER_AD_UNION_ID_1, Category.C);
 
     /////////////////////////////// 以上是应用外场景的广告，没有内容或功能载体，只为弹广告而弹广告  : 代号 C 区  ///////////////////////////////
 
-    /**
-     * 重叠广告，该广告place id可变
-     */
-    BACK_GROUND("back_ground", BackgroundScene.class, Category.D);
 
     /////////////////////////////// 特殊业务  : 代号 S 区  ///////////////////////////////
     private final String mName;
@@ -332,10 +319,6 @@ public enum EntranceType {
 
         } else if (adSceneClass == AppOuterDeferScene.class) {
             adScene = new AppOuterDeferScene(imContext, this);
-
-        } else if (adSceneClass == BackgroundScene.class) {
-            adScene = new BackgroundScene(imContext, this);
-
         } else if (adSceneClass == CommonInterstitialOutScene.class) {
             adScene = new CommonInterstitialOutScene(imContext, this);
 

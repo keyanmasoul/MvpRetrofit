@@ -6,6 +6,7 @@ import android.os.PowerManager;
 import android.text.format.DateUtils;
 
 import com.cpu.time.AppRunTimeManager;
+import com.orhanobut.hawk.Hawk;
 
 import corall.ad.AdsModule;
 import corall.ad.bean.CorAdPlace;
@@ -24,12 +25,10 @@ import corall.base.util.NetWorkInfoParser;
 public abstract class AStrategyExecutor implements IStrategyExecutor {
 
     protected CorApplication imContext;
-    protected AdsModule mAdModule;
     protected String mAdScene;
 
-    public AStrategyExecutor(CorApplication context, AdsModule adModule, String adScene) {
+    public AStrategyExecutor(CorApplication context, String adScene) {
         imContext = context;
-        mAdModule = adModule;
         mAdScene = adScene;
     }
 
@@ -52,35 +51,35 @@ public abstract class AStrategyExecutor implements IStrategyExecutor {
     }
 
     protected long getLastShowTime() {
-        return mAdModule.getADBeanManager().getADSharedPrefManager().getLastShowTime(getLastShowTimeKey());
+        return Hawk.get(getLastShowTimeKey());
     }
 
     protected void setLastShowTime(long lastShowTime) {
-        mAdModule.getADBeanManager().getADSharedPrefManager().setLastShowTime(getLastShowTimeKey(), lastShowTime);
+        Hawk.put(getLastShowTimeKey(), lastShowTime);
     }
 
     protected int getRequestCounts() {
-        return mAdModule.getADBeanManager().getADSharedPrefManager().getRequestCounts(getRequestCountKey());
+        return Hawk.get(getRequestCountKey());
     }
 
     protected void setRequestCounts(int count) {
-        mAdModule.getADBeanManager().getADSharedPrefManager().setRequestCounts(getRequestCountKey(), count);
+        Hawk.put(getRequestCountKey(), count);
     }
 
     protected int getShowCounts() {
-        return mAdModule.getADBeanManager().getADSharedPrefManager().getShowCounts(getShowCountKey());
+        return Hawk.get(getShowCountKey());
     }
 
     protected void setShowCounts(int count) {
-        mAdModule.getADBeanManager().getADSharedPrefManager().setShowCounts(getShowCountKey(), count);
+        Hawk.put(getShowCountKey(), count);
     }
 
     protected long getBeginTimeOfDay() {
-        return mAdModule.getADBeanManager().getADSharedPrefManager().getBeginTimeOfDay(getBeginTimeOfDayKey());
+        return Hawk.get(getBeginTimeOfDayKey());
     }
 
     protected void setBeginTimeOfDay(long beginTime) {
-        mAdModule.getADBeanManager().getADSharedPrefManager().setBeginTimeOfDay(getBeginTimeOfDayKey(), beginTime);
+        Hawk.put(getBeginTimeOfDayKey(), beginTime);
     }
 
     @Override

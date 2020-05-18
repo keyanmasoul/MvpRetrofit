@@ -3,7 +3,6 @@ package corall.adscene.strategy;
 
 import java.util.HashMap;
 
-import corall.ad.AdsModule;
 import corall.adscene.EntranceType;
 import corall.adscene.strategy.base.AStrategyExecutor;
 import corall.adscene.strategy.inner.FuncExecutor;
@@ -23,25 +22,20 @@ import corall.base.app.CorApplication;
  */
 public class ADStrategyManager {
 
-    private CorApplication imContext;
-    private AdsModule mAdModule;
+    private static HashMap<String, Object> mExecutorMap;
 
-    private HashMap<String, Object> mExecutorMap;
 
-    public ADStrategyManager(CorApplication context, AdsModule adModule) {
-        imContext = context;
-        mAdModule = adModule;
-        mExecutorMap = new HashMap<>();
-    }
-
-    private <T> T getBean(Class<T> clazz, String mark) {
+    private static <T> T getBean(Class<T> clazz, String mark) {
         String key = clazz.getName() + mark;
+        if (mExecutorMap == null) {
+            mExecutorMap = new HashMap<>();
+        }
         Object instance = mExecutorMap.get(key);
         if (instance == null) {
             synchronized (clazz) {
                 instance = mExecutorMap.get(key);
                 if (instance == null) {
-                    instance = this.createBean(clazz, mark);
+                    instance = createBean(CorApplication.getInstance(), clazz, mark);
                     mExecutorMap.put(key, instance);
                 }
             }
@@ -49,39 +43,39 @@ public class ADStrategyManager {
         return (T) instance;
     }
 
-    private <T> T createBean(Class<T> clazz, String mark) {
+    private static <T> T createBean(CorApplication imContext, Class<T> clazz, String mark) {
         Object obj = null;
 
         if (clazz == InnerAdExecutor.class) {
-            obj = new InnerAdExecutor(imContext, mAdModule, mark);
+            obj = new InnerAdExecutor(imContext, mark);
 
         } else if (clazz == OuterAdExecutor.class) {
-            obj = new OuterAdExecutor(imContext, mAdModule, mark);
+            obj = new OuterAdExecutor(imContext, mark);
 
         } else if (clazz == AppOuterExecutor.class) {
-            obj = new AppOuterExecutor(imContext, mAdModule, mark);
+            obj = new AppOuterExecutor(imContext, mark);
 
         } else if (clazz == FuncExecutor.class) {
-            obj = new FuncExecutor(imContext, mAdModule, mark);
+            obj = new FuncExecutor(imContext, mark);
 
         } else if (clazz == AppOuterDeferExecutor.class) {
-            obj = new AppOuterDeferExecutor(imContext, mAdModule, mark);
+            obj = new AppOuterDeferExecutor(imContext, mark);
 
-        }else if (clazz == ChargingExecutor.class) {
-            obj = new ChargingExecutor(imContext, mAdModule, mark);
+        } else if (clazz == ChargingExecutor.class) {
+            obj = new ChargingExecutor(imContext, mark);
 
         } else if (clazz == RateExecutor.class) {
-            obj = new RateExecutor(imContext, mAdModule, mark);
+            obj = new RateExecutor(imContext, mark);
 
         } else if (clazz == ShareExecutor.class) {
-            obj = new ShareExecutor(imContext, mAdModule, mark);
+            obj = new ShareExecutor(imContext, mark);
         }
 
         return (T) obj;
     }
 
 
-    public AStrategyExecutor getExecutorByEntranceType(EntranceType entranceType) {
+    public static AStrategyExecutor getExecutorByEntranceType(EntranceType entranceType) {
         switch (entranceType) {
             case SPLASH:
             case TRIGGER:
@@ -111,11 +105,8 @@ public class ADStrategyManager {
             case APP_INSTALL_DEFER:
             case APP_UNINSTALL_DEFER:
                 return getBean(AppOuterDeferExecutor.class, entranceType.getName());
-
             case APP_OUTER_AD:
-            case BACK_GROUND:
                 return getBean(AppOuterExecutor.class, entranceType.getName());
-
             case FUNC_CHANNEL_CHECK:
             case FUNC_SWIPE:
             case FUNC_WEATHER:

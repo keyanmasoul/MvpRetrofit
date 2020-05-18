@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 import corall.base.bean.GlobalMessageEvent;
 import corall.base.bean.MessageEvent;
+import corall.base.util.AppInfoUtil;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -171,6 +172,8 @@ public abstract class CorApplication<B extends CorBeanManager> extends Applicati
 
         // 扩展模块管理
         initSubModules();
+
+        AppInfoUtil.registerActivityLifecycleCallbacks(this);
 
     }
 

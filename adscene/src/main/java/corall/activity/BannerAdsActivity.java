@@ -31,7 +31,7 @@ import corall.base.util.StringUtil;
 public class BannerAdsActivity extends InterstitialActivity {
 
     public static void showInterstitialAd(Context context, String entranceType) {
-        Intent intent = new Intent(context, ClassUtils.getBannerAdsActivity());
+        Intent intent = new Intent(context, BannerAdsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(ENTRANCE_TYPE, entranceType);
         context.startActivity(intent);

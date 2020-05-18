@@ -10,6 +10,7 @@ import org.apache.commons.lang3.ClassUtils;
 
 import corall.activity.BannerAdsActivity;
 import corall.activity.NativeAdActivity;
+import corall.activity.WebAdActivity;
 import corall.base.bean.AdEvent;
 import corall.ad.bean.CorAdPlace;
 import corall.ad.bean.CorAdUnionPlace;
@@ -218,7 +219,7 @@ public class CommonInterstitialScene extends AdReportScene {
 
     private void showDirectInterstitial() {
         try {
-            ((DirectInterstitialAd) activeAd).showByAct(ClassUtils.getWebAdActivity());
+            ((DirectInterstitialAd) activeAd).showByAct(WebAdActivity.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -226,7 +227,7 @@ public class CommonInterstitialScene extends AdReportScene {
 
     private void showWebInterstitial() {
         try {
-            ((WebInterstitialAd) activeAd).showByAct(ClassUtils.getWebAdActivity());
+            ((WebInterstitialAd) activeAd).showByAct(WebAdActivity.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

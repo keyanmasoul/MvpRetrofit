@@ -13,7 +13,7 @@ import corall.base.app.CorApplication;
 
 public class InnerAdExecutor extends AdExecutor {
 
-    public InnerAdExecutor(CorApplication context, AdsModule adModule, String adScene) {
-        super(context, adModule, adScene);
+    public InnerAdExecutor(CorApplication context,  String adScene) {
+        super(context, adScene);
     }
 }

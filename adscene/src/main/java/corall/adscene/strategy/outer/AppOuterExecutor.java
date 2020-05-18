@@ -12,8 +12,8 @@ import corall.base.app.CorApplication;
 
 public class AppOuterExecutor extends OuterAdExecutor {
 
-    public AppOuterExecutor(CorApplication context, AdsModule adModule, String adScene) {
-        super(context, adModule, adScene);
+    public AppOuterExecutor(CorApplication context, String adScene) {
+        super(context, adScene);
     }
 
     @Override

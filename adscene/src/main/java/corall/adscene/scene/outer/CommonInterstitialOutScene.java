@@ -3,14 +3,15 @@ package corall.adscene.scene.outer;
 
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
-import android.os.Message;
-
 
 import com.blankj.utilcode.util.AppUtils;
 import com.example.adscene.R;
 
 import org.apache.commons.lang3.ClassUtils;
 
+import corall.activity.BannerAdsActivity;
+import corall.activity.NativeAdActivity;
+import corall.activity.WebAdActivity;
 import corall.ad.bean.CorAdPlace;
 import corall.ad.bean.CorAdUnionPlace;
 import corall.ad.bean.banner.RawBannerAd;
@@ -26,9 +27,13 @@ import corall.ad.ui.window.ViviRawNativeFullScreenAdWindow;
 import corall.adscene.ADConstant;
 import corall.adscene.AdType;
 import corall.adscene.EntranceType;
+import corall.adscene.GARecordUtils;
 import corall.adscene.scene.AdReportScene;
+import corall.adscene.strategy.ADStrategyManager;
 import corall.adscene.strategy.IStrategyExecutor;
 import corall.base.app.CorApplication;
+import corall.base.bean.AdEvent;
+import corall.base.util.AppInfoUtil;
 import corall.base.util.PermissionUtil;
 
 
@@ -48,40 +53,12 @@ public class CommonInterstitialOutScene extends AdReportScene {
     private ViviRawNativeFullScreenAdWindow mNativeFullScreenWindow;
     private boolean isShowed = false;
     private boolean isLoaded = false;
-    private boolean isWaitBg = false;
 
-    private MarkableHandler msgHandler;
 
     @SuppressLint("HandlerLeak")
     public CommonInterstitialOutScene(CorApplication context, EntranceType entranceType) {
         super(context, entranceType);
-        msgHandler = new MarkableHandler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == R.id.poster_msg_ad_background_already_show) {
-                    int bgPlaceId = msg.getData().getInt("pid");
-                    String bgPt = msg.getData().getString("pt");
-                    //重叠广告展示成功，如果广告已加载且未展示，则展示
-                    isWaitBg = false;
-                    if (isLoaded && !isShowed && activeAd != null && bgPlaceId == mHmAdPlace.getBgPlaceId()) {
-                        if (activeAd.getPlatform().equals(bgPt)) {
-                            //如果重叠广告与本广告是同一平台，则不展示本广告
-                            release();
-                        } else {
-                            isShowed = showAd();
-                        }
-                    }
 
-                } else if (msg.what == R.id.poster_msg_ad_background_wait_out_time) {
-                    //5s超时，不再等待重叠广告，直接展示，并且block重叠广告，以防重叠广告覆盖本广告
-                    if (!isShowed && isWaitBg && isLoaded) {
-                        isWaitBg = false;
-                        isShowed = showAd();
-                        getADModule().getAdSceneManager().blockBgPlace((int) mHmAdPlace.getBgPlaceId());
-                    }
-                }
-            }
-        };
     }
 
     @Override
@@ -92,11 +69,6 @@ public class CommonInterstitialOutScene extends AdReportScene {
     @Override
     protected void onADLoaded(AdType adType) {
         isLoaded = true;
-        if (isWaitBg) {
-            //如果此时重叠广告还没有展示，本广告先不展示，等待5s
-            imContext.handleMobEmptyDelayMessage(R.id.poster_msg_ad_background_wait_out_time, 5000);
-            return;
-        }
         isShowed = showAd();
     }
 
@@ -112,7 +84,6 @@ public class CommonInterstitialOutScene extends AdReportScene {
     @Override
     public void release() {
         super.release();
-        imContext.unregisterSubHandler(msgHandler);
         mBannerFullScreenWindow = null;
         mNativeFullScreenWindow = null;
         mHmAdPlace = null;
@@ -126,7 +97,7 @@ public class CommonInterstitialOutScene extends AdReportScene {
      */
     @Override
     public boolean load(boolean forceLoad) {
-        boolean inSelfApp = AppUtils.isInSelfApp();
+        boolean inSelfApp = AppInfoUtil.isInSelfApp();
         if (!forceLoad && inSelfApp) {
             GARecordUtils.onADLoadBlock(imContext, AdType.ALL, mEntranceType.getName(), ADConstant.ErrorCode.SELF_APP_RUNNING);
             return false;
@@ -137,11 +108,10 @@ public class CommonInterstitialOutScene extends AdReportScene {
             return false;
         }
 
-        isWaitBg = false;
         isShowed = false;
         isLoaded = false;
         mHmAdPlace = adUnionPlace;
-        mExecutor = getADModule().getADStrategyManager().getExecutorByEntranceType(mEntranceType);
+        mExecutor = ADStrategyManager.getExecutorByEntranceType(mEntranceType);
         if (forceLoad || mExecutor.check(adUnionPlace)) {
             loadBgPlaceAd(adUnionPlace);
 
@@ -154,16 +124,6 @@ public class CommonInterstitialOutScene extends AdReportScene {
     //加载重叠广告
     protected boolean loadBgPlaceAd(CorAdUnionPlace mHmAdPlace) {
         boolean bg_result = false;
-        if (mHmAdPlace.getBgPlaceId() != 0) {
-            if (!getADModule().getAdSceneManager().isLoadingBgPlace()) {
-                bg_result = getADModule().getAdSceneManager().loadBgPlace((int) mHmAdPlace.getBgPlaceId());
-                if (bg_result) {
-                    //重叠广告开始加载，注册消息监听用于接收重叠广告展示的消息
-                    isWaitBg = true;
-                    imContext.registerSubHandler(msgHandler);
-                }
-            }
-        }
         return bg_result;
     }
 
@@ -173,7 +133,7 @@ public class CommonInterstitialOutScene extends AdReportScene {
         //isWaitBg = false;
         isShowed = false;
         isLoaded = false;
-        mExecutor = getADModule().getADStrategyManager().getExecutorByEntranceType(mEntranceType);
+        mExecutor = ADStrategyManager.getExecutorByEntranceType(mEntranceType);
         if (forceLoad || mExecutor.check(mHmAdPlace)) {
             //loadBgPlaceAd(mHmAdPlace);
             result = reloadUnionPlace(mHmAdPlace);
@@ -187,20 +147,19 @@ public class CommonInterstitialOutScene extends AdReportScene {
     protected void onADLoadByActivity(AdType adType) {
         super.onADLoadByActivity(adType);
 
-        Message message = Message.obtain();
-        message.what = R.id.poster_msg_ad_show_app_outer_activity;
-        message.obj = mEntranceType.getName();
-        imContext.handleMobMessage(message);
+        final AdEvent message = new AdEvent();
+        message.setWhat(R.id.poster_msg_ad_show_app_outer_activity);
+        message.setObject(mEntranceType.getName());
+        imContext.sendMessage(message);
     }
 
     @Override
     public void onAdClose(AdType adType) {
         release();
-
-        Message message = Message.obtain();
-        message.what = R.id.poster_msg_ad_close_app_outer_activity;
-        message.obj = mEntranceType.getName();
-        imContext.handleMobMessage(message);
+        final AdEvent message = new AdEvent();
+        message.setWhat(R.id.poster_msg_ad_close_app_outer_activity);
+        message.setObject(mEntranceType.getName());
+        imContext.sendMessage(message);
     }
 
     @Override
@@ -229,20 +188,21 @@ public class CommonInterstitialOutScene extends AdReportScene {
                 break;
         }
 
-        Message message = Message.obtain();
-        message.what = R.id.poster_msg_ad_close_app_outer_activity;
-        message.obj = mEntranceType.getName();
-        imContext.handleMobMessage(message);
+        final AdEvent message = new AdEvent();
+        message.setWhat(R.id.poster_msg_ad_close_app_outer_activity);
+        message.setObject(mEntranceType.getName());
+        imContext.sendMessage(message);
     }
 
     @Override
     protected void onADFail(AdType adType, int code) {
         super.onADFail(adType, code);
 
-        Message message = Message.obtain();
-        message.what = R.id.poster_msg_ad_close_app_outer_activity;
-        message.obj = mEntranceType.getName();
-        imContext.handleMobMessage(message);
+
+        final AdEvent message = new AdEvent();
+        message.setWhat(R.id.poster_msg_ad_close_app_outer_activity);
+        message.setObject(mEntranceType.getName());
+        imContext.sendMessage(message);
     }
 
     @Override
@@ -278,7 +238,6 @@ public class CommonInterstitialOutScene extends AdReportScene {
             result = false;
 
         }
-        imContext.unregisterSubHandler(msgHandler);
         return result;
     }
 
@@ -300,7 +259,7 @@ public class CommonInterstitialOutScene extends AdReportScene {
 
     private void showDirectInterstitial() {
         try {
-            ((DirectInterstitialAd) activeAd).showByAct(ClassUtils.getWebAdActivity());
+            ((DirectInterstitialAd) activeAd).showByAct(WebAdActivity.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -308,7 +267,7 @@ public class CommonInterstitialOutScene extends AdReportScene {
 
     private void showWebInterstitial() {
         try {
-            ((WebInterstitialAd) activeAd).showByAct(ClassUtils.getWebAdActivity());
+            ((WebInterstitialAd) activeAd).showByAct(WebAdActivity.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,12 +1,18 @@
 package corall.base.util;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.drawable.Drawable;
 
+import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by xxj on 2018/4/25.
@@ -98,6 +104,67 @@ public class AppInfoUtil {
         }
 
         return fingerprint;
+    }
+
+
+    private static AtomicInteger mPageCount = new AtomicInteger(0);
+
+    public static void registerActivityLifecycleCallbacks(Context context) {
+        if (context instanceof Application) {
+            Application application = (Application) context;
+            application.registerActivityLifecycleCallbacks(new ActivityLifeCallback() {
+
+                @Override
+                public void onActivityResumed(Activity activity) {
+                    mPageCount.incrementAndGet();
+                }
+
+                @Override
+                public void onActivityPaused(Activity activity) {
+                    mPageCount.decrementAndGet();
+                }
+            });
+        }
+    }
+
+    public static boolean isInSelfApp() {
+        return mPageCount.get() > 0;
+    }
+
+    public static String getAppName(Context context, String packageName) {
+        PackageManager pm = context.getPackageManager();
+        String appName = null;
+        try {
+            ApplicationInfo applicationInfo = pm.getApplicationInfo(packageName, 0);
+            appName = String.valueOf(pm.getApplicationLabel(applicationInfo));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return appName;
+    }
+
+
+    public static Drawable getAppIcon(Context context, String packageName) {
+        PackageManager pm = context.getPackageManager();
+        Drawable appIcon = null;
+        try {
+            ApplicationInfo applicationInfo = pm.getApplicationInfo(packageName, 0);
+            appIcon = applicationInfo.loadIcon(pm);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return appIcon;
+    }
+
+    public static long getAppSize(Context context, String packageName) {
+        long appSize = 0;
+        try {
+            ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(packageName, 0);
+            appSize = new File(applicationInfo.sourceDir).length();
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return appSize;
     }
 
 }

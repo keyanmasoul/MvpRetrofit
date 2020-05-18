@@ -2,8 +2,10 @@ package corall.adscene.scene;
 
 
 import corall.ad.bean.CorAdUnionPlace;
+import corall.adscene.ADGAConstant;
 import corall.adscene.AdType;
 import corall.adscene.EntranceType;
+import corall.adscene.GARecordUtils;
 import corall.base.app.CorApplication;
 
 

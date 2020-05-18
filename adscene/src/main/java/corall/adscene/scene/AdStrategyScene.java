@@ -2,18 +2,17 @@ package corall.adscene.scene;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
-import com.blankj.utilcode.util.AppUtils;
 import com.example.adscene.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import corall.ad.AdsModule;
 import corall.ad.bean.CorAdPlace;
 import corall.ad.bean.CorAdUnionPlace;
 import corall.ad.bean.RawAd;
@@ -44,8 +43,11 @@ import corall.ad.ui.card.SmallNativeAdCardView;
 import corall.adscene.AdType;
 import corall.adscene.Category;
 import corall.adscene.EntranceType;
+import corall.adscene.strategy.ADStrategyManager;
 import corall.adscene.strategy.base.AStrategyExecutor;
 import corall.base.app.CorApplication;
+import corall.base.bean.AdEvent;
+import corall.base.util.AppInfoUtil;
 
 //import cr.s.a.adscene.inner.StoreScene;
 
@@ -290,8 +292,8 @@ public abstract class AdStrategyScene extends AdScene {
     protected abstract void onRewardedVideoStarted();
 
 
-    protected ADModule getADModule() {
-        return (ADModule) imContext.getSubModule(ADModule.MODULE_KEY);
+    protected AdsModule getADModule() {
+        return (AdsModule) imContext.getSubModule(AdsModule.MODULE_KEY);
     }
 
     public RawAd getActiveAd() {
@@ -324,11 +326,12 @@ public abstract class AdStrategyScene extends AdScene {
 //        }
 
         if (isAlwaysPreload() && activeAd == null && failCount < 3) {
-            Message msg = new Message();
-            msg.what = R.id.msg_ad_always_reload;
-            msg.obj = mEntranceType.getName();
-//            msg.arg2 = placeId;
-            imContext.handleMobDelayMessage(msg, failCount > 0 ? failCount * 15000 : 1500);
+
+            final AdEvent message = new AdEvent();
+            message.setWhat(R.id.msg_ad_always_reload);
+            message.setObject(mEntranceType.getName());
+            imContext.sendMessageDelay(message, failCount > 0 ? failCount * 15000 : 1500);
+
         }
     }
 
@@ -337,7 +340,7 @@ public abstract class AdStrategyScene extends AdScene {
      */
     @Override
     public AStrategyExecutor getStrategyExecutor() {
-        return getADModule().getADStrategyManager().getExecutorByEntranceType(mEntranceType);
+        return ADStrategyManager.getExecutorByEntranceType(mEntranceType);
     }
 
     /**
@@ -345,7 +348,7 @@ public abstract class AdStrategyScene extends AdScene {
      */
     @Override
     public CorAdUnionPlace getHmAdUnionPlace() {
-        return AdvSDK.getInstance().getUnionAd(mEntranceType.getPid());
+        return getADModule().getUnionAd(mEntranceType.getPid());
     }
 
     /**
@@ -862,7 +865,7 @@ public abstract class AdStrategyScene extends AdScene {
             }
 
 
-            if (interstitialAd.isLoaded() && !AppUtils.isInSelfApp()) {
+            if (interstitialAd.isLoaded() && !AppInfoUtil.isInSelfApp()) {
                 activeAd = interstitialAd;
                 onADFilledAndLoaded(AdType.FB_INTERSTITIAL);
                 return true;
@@ -1202,7 +1205,7 @@ public abstract class AdStrategyScene extends AdScene {
                 return false;
             }
 
-            if (interstitialAd.isLoaded() && !AppUtils.isInSelfApp()) {
+            if (interstitialAd.isLoaded() && !AppInfoUtil.isInSelfApp()) {
                 activeAd = interstitialAd;
                 onADFilledAndLoaded(AdType.AM_INTERSTITIAL);
                 return true;
@@ -1711,7 +1714,7 @@ public abstract class AdStrategyScene extends AdScene {
 //            }
 //
 //            try {
-//                if (interstitialAd.isLoaded() && !AppUtils.isInSelfApp()) {
+//                if (interstitialAd.isLoaded() && !AppInfoUtil.isInSelfApp()) {
 //                    activeAd = interstitialAd;
 //                    onADFilledAndLoaded(AdType.AM_NEW_INTERSTITIAL);
 //                    return true;
