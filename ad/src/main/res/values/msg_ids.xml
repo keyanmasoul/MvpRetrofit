@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+消息ID资源
+所有消息ID定义在res下的msg_idx.xml文件下，命名规则为msg_(modual名称)_(后缀名称)，并在其上一行添加注释
+ -->
+<resources>
+
+    <!-- 广告聚合sdk初始化完成 -->
+    <item name="poster_msg_ad_sdk_init_finish" type="id" />
+
+</resources>

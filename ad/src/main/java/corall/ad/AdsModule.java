@@ -8,12 +8,14 @@ import android.os.Build;
 import android.os.Message;
 import android.text.TextUtils;
 
+import com.cpu.time.AppRunTimeManager;
 import com.facebook.ads.AudienceNetworkAds;
 import com.google.android.gms.ads.MobileAds;
 import com.mopub.common.MoPub;
 import com.mopub.common.SdkConfiguration;
 import com.mopub.common.SdkInitializationListener;
 import com.mopub.common.logging.MoPubLog;
+import com.orhanobut.hawk.Hawk;
 
 import java.net.NetworkInterface;
 import java.util.Collections;
@@ -26,8 +28,10 @@ import corall.ad.cache.AdsConfigCache;
 import corall.ad.task.LoadAdTask;
 import corall.base.app.AModule;
 import corall.base.app.CorApplication;
+import corall.base.bean.AdEvent;
 import corall.base.task.CorTask;
 import corall.base.task.ICorTaskResult;
+import corall.base.util.KeyUtil;
 
 /**
  * 广告主模块
@@ -58,7 +62,6 @@ public class AdsModule extends AModule implements ICorTaskResult {
     private static boolean isEmulator = false;
     private static boolean blockable = false;
     private boolean alreadyInitAd;
-    private AdvInitListener mInitListener;
 
     public AdsModule(CorApplication context, String moduleMark) {
         super(context, moduleMark);
@@ -109,6 +112,7 @@ public class AdsModule extends AModule implements ICorTaskResult {
     protected void doBuildModule() throws Exception {
         adsBeanManager = new AdsBeanManager(imContext, this);
         isInstallFacebook = isInstallFaceBook(imContext);
+        AppRunTimeManager.getInstance().init(imContext,false);
     }
 
     @Override
@@ -278,7 +282,7 @@ public class AdsModule extends AModule implements ICorTaskResult {
         }
 
         //初始化admob sdk，需要在初始化时传入admob 的应用key值
-        String admobKey = "";//hmAdsSDKConfig.getAdMobKey();
+        String admobKey = BuildConfig.ADMOB_APP_KEY;
         if (TextUtils.isEmpty(admobKey)) {
             return;
         }
@@ -325,7 +329,7 @@ public class AdsModule extends AModule implements ICorTaskResult {
                 @Override
                 public void onInitializationFinished() {
                     isMopubInit = true;
-                    onSdkInitFinished();
+//                    onSdkInitFinished();
                 }
             });
 
@@ -340,31 +344,31 @@ public class AdsModule extends AModule implements ICorTaskResult {
         return isInitComplete;
     }
 
-    public void onSdkInitFinished() {
-
-        if (alreadyInitAd && (isMopubInit || !(isNeedInitMopub))) {
-            try {
-//                AdSDKSharedPrefManager sharedPrefManager = (AdSDKSharedPrefManager) mSdkApp.getSharedPrefManager();
-//                long last = sharedPrefManager.getLastConfigUpdateTime();
-//                if (last == 0) {
-//                    //第一次初始化，未更新云配，立刻更新广告配置
-//                    updateAdConfig();
+//    public void onSdkInitFinished() {
+//
+//        if (alreadyInitAd && (isMopubInit || !(isNeedInitMopub))) {
+//            try {
+////                AdSDKSharedPrefManager sharedPrefManager = (AdSDKSharedPrefManager) mSdkApp.getSharedPrefManager();
+////                long last = sharedPrefManager.getLastConfigUpdateTime();
+////                if (last == 0) {
+////                    //第一次初始化，未更新云配，立刻更新广告配置
+////                    updateAdConfig();
+////                }
+//                if (!isInitComplete) {
+//                    if (mInitListener != null) {
+//                        mInitListener.onExtraAdsInitComplete();
+//                    }
+//                    isInitComplete = true;
+//                } else {
+//                    if (mInitListener != null) {
+//                        mInitListener.onAdsUpdate();
+//                    }
 //                }
-                if (!isInitComplete) {
-                    if (mInitListener != null) {
-                        mInitListener.onExtraAdsInitComplete();
-                    }
-                    isInitComplete = true;
-                } else {
-                    if (mInitListener != null) {
-                        mInitListener.onAdsUpdate();
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
 
     @Override
@@ -375,7 +379,54 @@ public class AdsModule extends AModule implements ICorTaskResult {
     @Override
     public void onComplete(int taskStatus) {
         if (taskStatus == CorTask.TASK_STATUS_PASS) {
+            String channel = getReferrerChannel();
+            List<CorAdPlace> list = getAdsConfigCache().getCorAdPlaceList();
+            if (list != null) {
+                for (CorAdPlace ad : list) {
+                    ad.dealWithChannel(channel);
+                }
+            }
 
+
+            try {
+
+                initAdMobSDK();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                initMopubSDK();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            try {
+                initFBAdSDK();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            alreadyInitAd = true;
+            checkBlockable();
+//            if (mInitListener != null) {
+//                mInitListener.onAdsInitComplete();
+//            }
+//            onSdkInitFinished();
+
+            final AdEvent message = new AdEvent();
+            message.setWhat(R.id.poster_msg_ad_sdk_init_finish);
+            imContext.sendMessage(message);
         }
+    }
+
+
+    public String getReferrerChannel() {
+        return Hawk.get(KeyUtil.getKey(R.string.adv_ch_key), "organic");
+    }
+
+    public void setReferrerChannel(String chl) {
+        Hawk.put(KeyUtil.getKey(R.string.adv_ch_key), chl);
     }
 }

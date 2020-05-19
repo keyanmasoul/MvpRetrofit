@@ -35,4 +35,8 @@ public class App extends CorApplication {
 
         return list;
     }
+
+    public AdsModule getAdsModule(){
+        return (AdsModule) getSubModule(AdsModule.MODULE_KEY);
+    }
 }

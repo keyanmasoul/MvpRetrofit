@@ -51,7 +51,7 @@ public abstract class AStrategyExecutor implements IStrategyExecutor {
     }
 
     protected long getLastShowTime() {
-        return Hawk.get(getLastShowTimeKey());
+        return Hawk.get(getLastShowTimeKey(),0);
     }
 
     protected void setLastShowTime(long lastShowTime) {
@@ -59,7 +59,7 @@ public abstract class AStrategyExecutor implements IStrategyExecutor {
     }
 
     protected int getRequestCounts() {
-        return Hawk.get(getRequestCountKey());
+        return Hawk.get(getRequestCountKey(),0);
     }
 
     protected void setRequestCounts(int count) {
@@ -67,7 +67,7 @@ public abstract class AStrategyExecutor implements IStrategyExecutor {
     }
 
     protected int getShowCounts() {
-        return Hawk.get(getShowCountKey());
+        return Hawk.get(getShowCountKey(),0);
     }
 
     protected void setShowCounts(int count) {
@@ -75,7 +75,7 @@ public abstract class AStrategyExecutor implements IStrategyExecutor {
     }
 
     protected long getBeginTimeOfDay() {
-        return Hawk.get(getBeginTimeOfDayKey());
+        return Hawk.get(getBeginTimeOfDayKey(),0L);
     }
 
     protected void setBeginTimeOfDay(long beginTime) {
@@ -157,6 +157,7 @@ public abstract class AStrategyExecutor implements IStrategyExecutor {
         //检查配置
         if (!ignoreOutTimeProtect()) {
             int protect = hmNativeAd.getProTime();
+
             if (protect * DateUtils.HOUR_IN_MILLIS > AppRunTimeManager.getInstance().getAppUsedTime()) {
                 return false;
             }

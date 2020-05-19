@@ -52,6 +52,7 @@
     <string name="adv_firstrun_key">av_ift</string>
     <string name="adv_config_key">ccmb_ad</string>
     <string name="adv_ad_gray_key">asm_gray</string>
+    <string name="adv_ch_key">cor_chl</string>
 
     <string name="poster_close">Close</string>
     <string name="poster_ad_user_recommend">%% user recommend that:</string>

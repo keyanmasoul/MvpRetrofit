@@ -4,8 +4,6 @@
  -->
 <resources>
 
-    <!-- 广告聚合sdk初始化完成 -->
-    <item name="poster_msg_ad_sdk_init_finish" type="id" />
     <!--触发应用外广告-->
     <item name="poster_msg_ad_engine_outer_ad" type="id" />
     <!--准备应用外广告-->

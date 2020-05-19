@@ -6,8 +6,10 @@ import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 
+import corall.adscene.EntranceType;
 import corall.base.BaseActivity;
 import corall.base.bean.AdEvent;
+import corall.base.app.CorApplication;
 import corall.base.bean.DownloadEvent;
 import corall.base.bean.GlobalMessageEvent;
 import corall.base.bean.MessageEvent;
@@ -64,10 +66,26 @@ public class MainActivity extends BaseActivity implements ICorTaskResult {
                 sendGlobalMessage();
             }
         });
+
+        findViewById(R.id.btn_test5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadInterstitalAd();
+            }
+        });
+        if (((App) CorApplication.getInstance()).getAdsModule().isSdkReady()) {
+            findViewById(R.id.btn_test5).setEnabled(true);
+        } else {
+            findViewById(R.id.btn_test5).setEnabled(false);
+        }
     }
 
     private void sendGlobalMessage() {
         EventBus.getDefault().post(new GlobalMessageEvent());
+    }
+
+    private void loadInterstitalAd() {
+        EntranceType.TRIGGER.load();
     }
 
     private void asyncTest() {
@@ -98,13 +116,13 @@ public class MainActivity extends BaseActivity implements ICorTaskResult {
         }
     }
 
-    protected void receiveAdEvent(AdEvent adEvent) {
-
-    }
-
     @Override
     protected void receiveAdEvent(int eventId, String name) {
-        
+        if (eventId == R.id.poster_msg_ad_sdk_init_finish) {
+            findViewById(R.id.btn_test5).setEnabled(true);
+        } else if (eventId == R.id.poster_msg_ad_interstitial_loaded && name.equals(EntranceType.TRIGGER.getName())) {
+            EntranceType.TRIGGER.show();
+        }
     }
 
     @Override

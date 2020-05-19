@@ -11,12 +11,12 @@ android {
         versionName "1.0"
 
         manifestPlaceholders = [
-                ADMOB_APP_KEY  : "xxxxxx",
+                ADMOB_APP_KEY  : "ca-app-pub-5776782444121020~6010819242",
                 FACEBOOK_APP_ID: "123456"
         ]
 
         //ADMOB 平台的KEY
-        buildConfigField "String", "ADMOB_APP_KEY", "\"xxxxxx\""
+        buildConfigField "String", "ADMOB_APP_KEY", "\"ca-app-pub-5776782444121020~6010819242\""
 
         //用于服务端识别该应用、并做为Header 参数的key
         buildConfigField "String", "APP_ID", "\"10000004\""
@@ -35,6 +35,7 @@ android {
 
 repositories {
     flatDir {
+        dirs('../ad/libs', 'libs')
         dirs 'libs'
     }
 //    maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
@@ -47,13 +48,13 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api project(':base')
 
-    compileOnly 'com.google.android.gms:play-services-ads:18.3.0'
-    compileOnly(name: 'mopub-sdk-base-release', ext: 'aar')
-    compileOnly(name: 'mopub-sdk-banner-release', ext: 'aar')
-    compileOnly(name: 'mopub-sdk-native-static-release', ext: 'aar')
-    compileOnly(name: 'mopub-sdk-native-video-release', ext: 'aar')
-    compileOnly(name: 'mopub-sdk-interstitial-release', ext: 'aar')
-    compileOnly(name: 'mopub-sdk-rewardedvideo-release', ext: 'aar')
-    compileOnly 'com.mopub.volley:mopub-volley:2.1.0'
-    compileOnly 'com.facebook.android:audience-network-sdk:5.6.0'
+    implementation 'com.google.android.gms:play-services-ads:18.3.0'
+    implementation(name: 'mopub-sdk-base-release', ext: 'aar')
+    implementation(name: 'mopub-sdk-banner-release', ext: 'aar')
+    implementation(name: 'mopub-sdk-native-static-release', ext: 'aar')
+    implementation(name: 'mopub-sdk-native-video-release', ext: 'aar')
+    implementation(name: 'mopub-sdk-interstitial-release', ext: 'aar')
+    implementation(name: 'mopub-sdk-rewardedvideo-release', ext: 'aar')
+    implementation 'com.mopub.volley:mopub-volley:2.1.0'
+    implementation 'com.facebook.android:audience-network-sdk:5.6.0'
 }

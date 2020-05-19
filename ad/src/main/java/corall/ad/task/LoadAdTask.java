@@ -102,6 +102,7 @@ public class LoadAdTask extends CorTask {
         }
         mHandler.parserJson(result);
         adsModule.getAdsConfigCache().setBlockable(mHandler.isBlockable());
+        adsModule.getAdsConfigCache().setCorAdPlaceList(mHandler.getAdsList());
         return mHandler.getAdsList();
     }
 }

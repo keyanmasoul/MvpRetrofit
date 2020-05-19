@@ -20,6 +20,17 @@ android {
 
 }
 
+repositories {
+    flatDir {
+        dirs('../ad/libs', 'libs')
+        dirs 'libs'
+    }
+//    maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
+//    maven {
+//        url 'https://raw.github.com/voyagegroup/FluctSDK-Android/master/m2/repository/'
+//    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
