@@ -51,7 +51,7 @@ public abstract class AStrategyExecutor implements IStrategyExecutor {
     }
 
     protected long getLastShowTime() {
-        return Hawk.get(getLastShowTimeKey(),0);
+        return Hawk.get(getLastShowTimeKey(),0L);
     }
 
     protected void setLastShowTime(long lastShowTime) {
