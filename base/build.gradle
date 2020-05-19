@@ -53,4 +53,5 @@ dependencies {
     api 'com.liulishuo.okdownload:sqlite:1.0.7'
     api 'com.liulishuo.okdownload:okhttp:1.0.7'
 
+    api "com.orhanobut:hawk:2.0.1"
 }

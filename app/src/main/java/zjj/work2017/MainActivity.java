@@ -1,19 +1,16 @@
 package zjj.work2017;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.blankj.utilcode.util.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
 import corall.base.BaseActivity;
+import corall.base.bean.AdEvent;
 import corall.base.bean.DownloadEvent;
 import corall.base.bean.GlobalMessageEvent;
 import corall.base.bean.MessageEvent;
-import corall.base.bean.TaskEvent;
 import corall.base.task.CorTask;
 import corall.base.task.CorTaskSign;
 import corall.base.task.ICorTaskResult;
@@ -99,6 +96,10 @@ public class MainActivity extends BaseActivity implements ICorTaskResult {
                 textView.setText("asyncTest success!");
             }
         }
+    }
+
+    protected void receiveAdEvent(AdEvent adEvent) {
+
     }
 
     @Override
